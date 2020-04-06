@@ -1,0 +1,19 @@
+{
+  "name": "property_search_engine_api",
+  "version": "1.0.0",
+  "description": "api development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://code.assemblerschool.com/GFT_inc./Property_Search_Engine_API.git"
+  },
+  "author": "pratt and Cris",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^18.1.0",
+    "joi": "^14.3.1"
+  }
+}
