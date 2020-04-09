@@ -12,7 +12,7 @@ const UserModel = Mongoose.model("userCollection",{
     property_id:Array,
     role:String
 });
-
+//post request
 server.route({
     method:"POST",
     path:"/user",
@@ -41,3 +41,16 @@ server.route({
         }
     }
 });
+//get request
+server.route({
+    method: "GET",
+    path:"/houses",
+    handler: async (request, h)=>{
+        try{
+            var houses = await;
+            return h.response(houses);
+        } catch(error){
+            return h.response(error).code(500)
+        }
+    }
+})
