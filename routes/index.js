@@ -29,3 +29,16 @@ server.route({
 		}
 	}
 });
+//get request
+server.route({
+    method: "GET",
+    path:"/houses",
+    handler: async (request, h)=>{
+        try{
+            var houses = await;
+            return h.response(houses);
+        } catch(error){
+            return h.response(error).code(500)
+        }
+    }
+});
