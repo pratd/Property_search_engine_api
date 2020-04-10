@@ -1,6 +1,7 @@
 const Mongoose = require("mongoose");
 const server = require("../app");
 const userSchema = require("../models/user");
+// const Joi = require("joi");
 Mongoose.connect("mongodb://localhost/lookhaus", { useNewUrlParser: true , useUnifiedTopology: true });
 
 

@@ -1,7 +1,9 @@
 const Hapi = require('hapi');
+// const Joi = require("joi");
 const Mongoose = require("mongoose");
 const userSchema = require("./models/user");
-Mongoose.connect("mongodb://localhost/lookhaus", { useNewUrlParser: true , useUnifiedTopology: true });
+require('dotenv').config()
+Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true });
 
 // create new server instance
 const server = new Hapi.Server({
