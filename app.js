@@ -1,7 +1,6 @@
 const Hapi = require('hapi');
-const Joi = require("joi");
 const Mongoose = require("mongoose");
-// const userSchema = require("./models/user.js");
+const userSchema = require("./models/user");
 Mongoose.connect("mongodb://localhost/lookhaus", { useNewUrlParser: true , useUnifiedTopology: true });
 
 // create new server instance
@@ -9,6 +8,22 @@ const server = new Hapi.Server({
 	host: 'localhost',
 	port: 3000
 })
+
+
+
+server.route({
+	method: "GET",
+	path: "/users",
+	handler: async (request, h) => {
+		try {
+            const user = await userSchema.find().exec();
+            return h.response(user);
+        } catch (error) {
+            return h.response(error).code(500);
+        }
+	}
+})
+
 
 
 //SERVER BOOTUP
