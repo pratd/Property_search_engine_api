@@ -1,16 +1,8 @@
 const Hapi = require("hapi");
 const Joi = require("joi");
-const Mongoose = require("mongoose");
-Mongoose.connect("mongodb://127.0.0.1:27017");
-const server = new Hapi.Server({"host":"localhost", "port":3000});
-//create a test model
-const UserModel = Mongoose.model("userCollection",{
-    avatar:Object,
-    username: String,
-    password: String,
-    email:String,
-    property_id:Array,
-    role:String
+const server = new Hapi.Server({
+	"host": "localhost",
+	"port": 3000
 });
 //post request
 server.route({
