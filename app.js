@@ -3,7 +3,7 @@ const Hapi = require('hapi');
 const Mongoose = require("mongoose");
 const userSchema = require("./models/user");
 require('dotenv').config()
-Mongoose.connect(process.env.MONGOURI, { useNewUrlParser: true , useUnifiedTopology: true });
+Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true });
 
 // create new server instance
 const server = new Hapi.Server({
