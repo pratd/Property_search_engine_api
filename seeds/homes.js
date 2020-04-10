@@ -1,0 +1,226 @@
+const User = require('../models/user');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/lookhaus', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+
+
+const users = [{
+		"id": 1,
+		"kind": "",
+		"name": "some desc",
+		"photos": ['img.png'],
+		"description": "some desc long",
+		"location": "41.3743,2.1759",
+		"user_id": "1",
+		"bedroom": "3 or more",
+		"bathrooms": "2",
+		"kitchen": "fully fitted",
+		"condition": "new",
+		"price": 1200,
+		"lift": 0,
+		"pets_allowed": 1,
+		"garden": 0,
+		"swimming_pool": 0,
+		"air-conditioning": 1,
+		"heating": 0,
+		"floor": "3rd floor",
+		"orientation": "N",
+		"energy_certificate": "very good",
+		"parking": "yes",
+		"timestamp_created": 12345535643,
+		"timestamp_updated": 132445647678,
+		"bargain": 0,
+		"terrace": 0
+	},
+	{
+		"id": 2,
+		"kind": "",
+		"name": "some desc",
+		"photos": ['img.png'],
+		"description": "some desc long",
+		"location": "41.3743,2.1759",
+		"user_id": "1",
+		"bedroom": "3 or more",
+		"bathrooms": "2",
+		"kitchen": "fully fitted",
+		"condition": "new",
+		"price": 1200,
+		"lift": 0,
+		"pets_allowed": 1,
+		"garden": 0,
+		"swimming_pool": 0,
+		"air-conditioning": 1,
+		"heating": 0,
+		"floor": "3rd floor",
+		"orientation": "N",
+		"energy_certificate": "very good",
+		"parking": "yes",
+		"timestamp_created": 12345535643,
+		"timestamp_updated": 132445647678,
+		"bargain": 0,
+		"terrace": 0
+	},
+	{
+		"id": 3,
+		"kind": "",
+		"name": "some desc",
+		"photos": ['img.png'],
+		"description": "some desc long",
+		"location": "41.3743,2.1759",
+		"user_id": "1",
+		"bedroom": "3 or more",
+		"bathrooms": "2",
+		"kitchen": "fully fitted",
+		"condition": "new",
+		"price": 1200,
+		"lift": 0,
+		"pets_allowed": 1,
+		"garden": 0,
+		"swimming_pool": 0,
+		"air-conditioning": 1,
+		"heating": 0,
+		"floor": "3rd floor",
+		"orientation": "N",
+		"energy_certificate": "very good",
+		"parking": "yes",
+		"timestamp_created": 12345535643,
+		"timestamp_updated": 132445647678,
+		"bargain": 0,
+		"terrace": 0
+	},
+	{
+		"id": 4,
+		"kind": "",
+		"name": "some desc",
+		"photos": ['img.png'],
+		"description": "some desc long",
+		"location": "41.3743,2.1759",
+		"user_id": "1",
+		"bedroom": "3 or more",
+		"bathrooms": "2",
+		"kitchen": "fully fitted",
+		"condition": "new",
+		"price": 1200,
+		"lift": 0,
+		"pets_allowed": 1,
+		"garden": 0,
+		"swimming_pool": 0,
+		"air-conditioning": 1,
+		"heating": 0,
+		"floor": "3rd floor",
+		"orientation": "N",
+		"energy_certificate": "very good",
+		"parking": "yes",
+		"timestamp_created": 12345535643,
+		"timestamp_updated": 132445647678,
+		"bargain": 0,
+		"terrace": 0
+	},
+	{
+		"id": 5,
+		"kind": "",
+		"name": "some desc",
+		"photos": ['img.png'],
+		"description": "some desc long",
+		"location": "41.3743,2.1759",
+		"user_id": "1",
+		"bedroom": "3 or more",
+		"bathrooms": "2",
+		"kitchen": "fully fitted",
+		"condition": "new",
+		"price": 1200,
+		"lift": 0,
+		"pets_allowed": 1,
+		"garden": 0,
+		"swimming_pool": 0,
+		"air-conditioning": 1,
+		"heating": 0,
+		"floor": "3rd floor",
+		"orientation": "N",
+		"energy_certificate": "very good",
+		"parking": "yes",
+		"timestamp_created": 12345535643,
+		"timestamp_updated": 132445647678,
+		"bargain": 0,
+		"terrace": 0
+	},
+	{
+		"id": 6,
+		"kind": "",
+		"name": "some desc",
+		"photos": ['img.png'],
+		"description": "some desc long",
+		"location": "41.3743,2.1759",
+		"user_id": "1",
+		"bedroom": "3 or more",
+		"bathrooms": "2",
+		"kitchen": "fully fitted",
+		"condition": "new",
+		"price": 1200,
+		"lift": 0,
+		"pets_allowed": 1,
+		"garden": 0,
+		"swimming_pool": 0,
+		"air-conditioning": 1,
+		"heating": 0,
+		"floor": "3rd floor",
+		"orientation": "N",
+		"energy_certificate": "very good",
+		"parking": "yes",
+		"timestamp_created": 12345535643,
+		"timestamp_updated": 132445647678,
+		"bargain": 0,
+		"terrace": 0
+	},
+	{
+		"id": 7,
+		"kind": "",
+		"name": "some desc",
+		"photos": ['img.png'],
+		"description": "some desc long",
+		"location": "41.3743,2.1759",
+		"user_id": "1",
+		"bedroom": "3 or more",
+		"bathrooms": "2",
+		"kitchen": "fully fitted",
+		"condition": "new",
+		"price": 1200,
+		"lift": 0,
+		"pets_allowed": 1,
+		"garden": 0,
+		"swimming_pool": 0,
+		"air-conditioning": 1,
+		"heating": 0,
+		"floor": "3rd floor",
+		"orientation": "N",
+		"energy_certificate": "very good",
+		"parking": "yes",
+		"timestamp_created": 12345535643,
+		"timestamp_updated": 132445647678,
+		"bargain": 0,
+		"terrace": 0
+	}
+]
+
+function deleteAllUsers() {
+	return User.deleteMany({})
+		.then(() => {
+			console.log('Deleted all users');
+		})
+		.catch((err) => {
+			console.log('Failed to delete all users');
+			return Promise.reject(err);
+		});
+}
+
+deleteAllUsers();
+
+User.create(users, (err, users) => {
+	if (err) {
+		throw (err);
+	}
+	console.log('Success', users);
+	mongoose.connection.close();
+});
