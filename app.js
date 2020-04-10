@@ -4,3 +4,4 @@ const server = new Hapi.Server({
 	"host": "localhost",
 	"port": 3000
 });
+
