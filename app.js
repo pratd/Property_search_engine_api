@@ -1,9 +1,10 @@
 const Hapi = require("hapi");
-const Joi = require("joi");
+
 const server = new Hapi.Server({
 	"host": "localhost",
 	"port": 3000
 });
+<<<<<<< HEAD
 //post request
 server.route({
     method:"POST",
@@ -46,3 +47,9 @@ server.route({
         }
     }
 })
+=======
+
+
+
+module.exports = server;
+>>>>>>> 574cc36465cc4b056119b7358572e96a8cefdfdc
