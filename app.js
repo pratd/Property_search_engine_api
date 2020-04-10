@@ -1,5 +1,5 @@
 const Hapi = require('hapi');
-// const Joi = require("joi");
+const Joi = require("joi");
 const Mongoose = require("mongoose");
 const userSchema = require("./models/user");
 require('dotenv').config()
@@ -8,7 +8,7 @@ Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTo
 // create new server instance
 const server = new Hapi.Server({
 	host: 'localhost',
-	port: 3000
+	port: process.env.PORT || 3000
 })
 
 
