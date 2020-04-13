@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const homeSchema = new Schema({
+	_id:Number,
 	name: String,
 	photos: Array,
 	description: String,
-	location: String,
-	user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
 	kind: String,
+	location: String,
+	user_id: Number,
 	bedrooms: String,
 	bathrooms: String,
 	kitchen: String,

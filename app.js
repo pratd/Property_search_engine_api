@@ -1,8 +1,9 @@
+require('dotenv').config();
 const Hapi = require('hapi');
 const Joi = require("joi");
 const Mongoose = require("mongoose");
 const userSchema = require("./models/user");
-require('dotenv').config()
+
 Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true });
 
 // create new server instance
