@@ -1,35 +1,56 @@
-const User = require('../models/user');
+const Buyer_request = require('../models/buyers_requests');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', { useNewUrlParser: true , useUnifiedTopology: true });
 
-
 const users = [{
-		"id": 1,
-		"avatar": "../img",
-		"username": "lorem",
-		"email": "loremipsum@gmail.com",
-		"password": "1",
-		"property_id": 1,
-		"role": "admin"
-	},
-	{
-		"id": 2,
-		"avatar": "../img",
-		"username": "lorem",
-		"email": "loremipsum@gmail.com",
-		"password": "2",
-		"property_id": 2,
-		"role": "admin"
-	},
-	{
-		"id": 3,
-		"avatar": "../img",
-		"username": "lorem",
-		"email": "loremipsum@gmail.com",
-		"password": "3",
-		"property_id": 3,
-		"role": "admin"
-	}
+	"property_id":"5e943c073c6ce8c679632b05",
+	"seller_id":'5e9059ef7a856cf23b825502',
+	"buyer_name":"lorem ipsum",
+	"buyer_email":"lorea@abc.com",
+	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+	"property_id":"5e943c073c6ce8c679632b05",
+	"seller_id":2,
+	"buyer_name":"lorem ipsum",
+	"buyer_email":"lorea@abc.com",
+	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+	"property_id":"5e943c073c6ce8c679632b05",
+	"seller_id":2,
+	"buyer_name":"lorem ipsum",
+	"buyer_email":"lorea@abc.com",
+	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+	"property_id":"5e943c073c6ce8c679632b05",
+	"seller_id":2,
+	"buyer_name":"lorem ipsum",
+	"buyer_email":"lorea@abc.com",
+	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+	"property_id":"5e943c073c6ce8c679632b05",
+	"seller_id":2,
+	"buyer_name":"lorem ipsum",
+	"buyer_email":"lorea@abc.com",
+	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+	"property_id":"5e943c073c6ce8c679632b05",
+	"seller_id":2,
+	"buyer_name":"lorem ipsum",
+	"buyer_email":"lorea@abc.com",
+	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+	"property_id":"5e943c073c6ce8c679632b05",
+	"seller_id":2,
+	"buyer_name":"lorem ipsum",
+	"buyer_email":"lorea@abc.com",
+	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
 ]
 
 function deleteAllUsers() {
