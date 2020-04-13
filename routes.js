@@ -9,7 +9,10 @@ module.exports = {
 			method: "GET",
 			path: "/",
 			handler: async (req, res) => {
-				return res.response('Welcome to Lookhaus\'s dark side!')
+				const xFF = req.headers['x-forwarded-for'];
+				const ip = xFF ? xFF.split(',')[0]: req.info.remoteAddress ;
+				//return res.response('Welcome to Lookhaus\'s dark side!');
+				return res.response('client IP: ' + ip);
 			}
 		}),
 		server.route({
