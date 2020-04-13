@@ -3,50 +3,57 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', { useNewUrlParser: true , useUnifiedTopology: true });
 
 const buyers_requests = [{
-	"property_id":"5e943c073c6ce8c679632b05",
-	"seller_id":'5e9059ef7a856cf23b825502',
+	_id:401,
+	property_id:[201,202],
+	seller_id:101,
 	"buyer_name":"lorem ipsum",
 	"buyer_email":"lorea@abc.com",
 	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-	"property_id":"5e943c073c6ce8c679632b05",
-	"seller_id":'5e9059ef7a856cf23b825502',
+	_id:402,
+	property_id:[301, 304, 307],
+	seller_id:101,
 	"buyer_name":"lorem ipsum",
 	"buyer_email":"lorea@abc.com",
 	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-	"property_id":"5e943c073c6ce8c679632b05",
-	"seller_id":'5e9059ef7a856cf23b825502',
+	_id:403,
+	"property_id":[302,306],
+	"seller_id":102,
 	"buyer_name":"lorem ipsum",
 	"buyer_email":"lorea@abc.com",
 	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-	"property_id":"5e943c073c6ce8c679632b05",
-	"seller_id":'5e9059ef7a856cf23b825502',
+	_id:404,
+	"property_id":[305],
+	"seller_id":103,
 	"buyer_name":"lorem ipsum",
 	"buyer_email":"lorea@abc.com",
 	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-	"property_id":"5e943c073c6ce8c679632b05",
-	"seller_id":'5e9059ef7a856cf23b825502',
+	_id:405,
+	property_id:[203],
+	"seller_id":102,
 	"buyer_name":"lorem ipsum",
 	"buyer_email":"lorea@abc.com",
 	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-	"property_id":"5e943c073c6ce8c679632b05",
-	"seller_id":2,
+	_id:406,
+	"property_id":[202],
+	"seller_id":101,
 	"buyer_name":"lorem ipsum",
 	"buyer_email":"lorea@abc.com",
 	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-	"property_id":"5e943c073c6ce8c679632b05",
-	"seller_id":'5e9059ef7a856cf23b825502',
+	_id:407,
+	"property_id":[307],
+	"seller_id":101,
 	"buyer_name":"lorem ipsum",
 	"buyer_email":"lorea@abc.com",
 	"buyer_message":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
