@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const Home = require('../models/homes');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', {
 	useNewUrlParser: true,
@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost/lookhaus', {
 });
 
 
-const users = [{
+const homes = [{
 		"id": 1,
 		"kind": "",
 		"name": "some desc",
@@ -204,23 +204,23 @@ const users = [{
 	}
 ]
 
-function deleteAllUsers() {
-	return User.deleteMany({})
+function deleteAllHomes() {
+	return Home.deleteMany({})
 		.then(() => {
-			console.log('Deleted all users');
+			console.log('Deleted all homes');
 		})
 		.catch((err) => {
-			console.log('Failed to delete all users');
+			console.log('Failed to delete all homes');
 			return Promise.reject(err);
 		});
 }
 
-deleteAllUsers();
+deleteAllHomes();
 
-User.create(users, (err, users) => {
+Home.create(homes, (err, homes) => {
 	if (err) {
 		throw (err);
 	}
-	console.log('Success', users);
+	console.log('Success', homes);
 	mongoose.connection.close();
 });

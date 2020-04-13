@@ -1,9 +1,9 @@
-const User = require('../models/user');
+const Office = require('../models/offices');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', { useNewUrlParser: true , useUnifiedTopology: true });
 
 
-const users = [{
+const offices = [{
 		"id": 1,
 		"avatar": "../img",
 		"username": "lorem",
@@ -32,23 +32,23 @@ const users = [{
 	}
 ]
 
-function deleteAllUsers() {
-	return User.deleteMany({})
+function deleteAllOffices() {
+	return Office.deleteMany({})
 		.then(() => {
-			console.log('Deleted all users');
+			console.log('Deleted all the offices');
 		})
 		.catch((err) => {
-			console.log('Failed to delete all users');
+			console.log('Failed to delete all offices');
 			return Promise.reject(err);
 		});
 }
 
-deleteAllUsers();
+deleteAllOffices();
 
-User.create(users, (err, users) => {
+Office.create(offices, (err, users) => {
 	if (err) {
 		throw (err);
 	}
-	console.log('Success', users);
+	console.log('Success', offices);
 	mongoose.connection.close();
 });
