@@ -1,54 +1,67 @@
-const User = require('../models/user');
+const Office = require('../models/office');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', { useNewUrlParser: true , useUnifiedTopology: true });
 
-
-const users = [{
-		"id": 1,
-		"avatar": "../img",
-		"username": "lorem",
-		"email": "loremipsum@gmail.com",
-		"password": "1",
-		"property_id": 1,
-		"role": "admin"
-	},
-	{
-		"id": 2,
-		"avatar": "../img",
-		"username": "lorem",
-		"email": "loremipsum@gmail.com",
-		"password": "2",
-		"property_id": 2,
-		"role": "admin"
-	},
-	{
-		"id": 3,
-		"avatar": "../img",
-		"username": "lorem",
-		"email": "loremipsum@gmail.com",
-		"password": "3",
-		"property_id": 3,
-		"role": "admin"
-	}
+const offices = [{
+	"name":"some desc",
+	"photos":["photo.png"],
+	"description":"some desc long",
+	"user_id":"5e9059ef7a856cf23b825501",
+	"kind":"private",
+	"location":"41.3743,2.1759",
+	"price":12000,
+	"lift":0,
+	"pets_allowed":1,
+	"air-conditioning":1,
+	"terrace": 0,
+	"bargain":0
+  },
+  {
+	"name":"some desc",
+	"photos":["photo.png"],
+	"description":"some desc long",
+	"user_id":"5e9059ef7a856cf23b825501",
+	"kind":"private",
+	"location":"41.3743,2.1759",
+	"price":12000,
+	"lift":0,
+	"pets_allowed":1,
+	"air-conditioning":1,
+	"terrace": 0,
+	"bargain":0
+  },{
+	"name":"some desc",
+	"photos":["photo.png"],
+	"description":"some desc long",
+	"user_id":"5e9059ef7a856cf23b825501",
+	"kind":"private",
+	"location":"41.3743,2.1759",
+	"price":12000,
+	"lift":0,
+	"pets_allowed":1,
+	"air-conditioning":1,
+	"terrace": 0,
+	"bargain":0
+  }
 ]
 
-function deleteAllUsers() {
-	return User.deleteMany({})
+function deleteAllOffices() {
+	return Office.deleteMany({})
 		.then(() => {
-			console.log('Deleted all users');
+			console.log('Deleted all offices');
 		})
 		.catch((err) => {
-			console.log('Failed to delete all users');
+			console.log('Failed to delete all offices');
 			return Promise.reject(err);
 		});
 }
 
-deleteAllUsers();
+deleteAllOffices();
 
-User.create(users, (err, users) => {
+Office.create(offices, (err, offices) => {
 	if (err) {
 		throw (err);
 	}
-	console.log('Success', users);
+	console.log('Success', offices);
 	mongoose.connection.close();
 });

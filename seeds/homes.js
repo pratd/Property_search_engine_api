@@ -1,20 +1,18 @@
-const User = require('../models/user');
+const Home = require('../models/homes');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
 
-
-const users = [{
-		"id": 1,
-		"kind": "",
+const homes = [{
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
+		"kind": "duplex",
 		"location": "41.3743,2.1759",
-		"user_id": "1",
-		"bedroom": "3 or more",
+		"user_id": "5e9059ef7a856cf23b825500",
+		"bedrooms": "more",
 		"bathrooms": "2",
 		"kitchen": "fully fitted",
 		"condition": "new",
@@ -23,26 +21,22 @@ const users = [{
 		"pets_allowed": 1,
 		"garden": 0,
 		"swimming_pool": 0,
-		"air-conditioning": 1,
+		"air_conditioning": 1,
 		"heating": 0,
 		"floor": "3rd floor",
 		"orientation": "N",
-		"energy_certificate": "very good",
-		"parking": "yes",
-		"timestamp_created": 12345535643,
-		"timestamp_updated": 132445647678,
-		"bargain": 0,
-		"terrace": 0
+		"energy_certificate": "C",
+		"parking": "Included for extra 100€",
+		"bargain": 0
 	},
 	{
-		"id": 2,
-		"kind": "",
+		"kind": "duplex",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
 		"location": "41.3743,2.1759",
-		"user_id": "1",
-		"bedroom": "3 or more",
+		"user_id": "5e9059ef7a856cf23b825500",
+		"bedrooms": "more",
 		"bathrooms": "2",
 		"kitchen": "fully fitted",
 		"condition": "new",
@@ -51,26 +45,22 @@ const users = [{
 		"pets_allowed": 1,
 		"garden": 0,
 		"swimming_pool": 0,
-		"air-conditioning": 1,
+		"air_conditioning": 1,
 		"heating": 0,
 		"floor": "3rd floor",
 		"orientation": "N",
-		"energy_certificate": "very good",
-		"parking": "yes",
-		"timestamp_created": 12345535643,
-		"timestamp_updated": 132445647678,
-		"bargain": 0,
-		"terrace": 0
+		"energy_certificate": "C",
+		"parking": "Included for extra 100€",
+		"bargain": 0
 	},
 	{
-		"id": 3,
-		"kind": "",
+		"kind": "duplex",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
 		"location": "41.3743,2.1759",
-		"user_id": "1",
-		"bedroom": "3 or more",
+		"user_id": "5e9059ef7a856cf23b825500",
+		"bedrooms": "more",
 		"bathrooms": "2",
 		"kitchen": "fully fitted",
 		"condition": "new",
@@ -79,26 +69,22 @@ const users = [{
 		"pets_allowed": 1,
 		"garden": 0,
 		"swimming_pool": 0,
-		"air-conditioning": 1,
+		"air_conditioning": 1,
 		"heating": 0,
 		"floor": "3rd floor",
 		"orientation": "N",
-		"energy_certificate": "very good",
-		"parking": "yes",
-		"timestamp_created": 12345535643,
-		"timestamp_updated": 132445647678,
-		"bargain": 0,
-		"terrace": 0
+		"energy_certificate": "C",
+		"parking": "Included for extra 100€",
+		"bargain": 0
 	},
 	{
-		"id": 4,
-		"kind": "",
+		"kind": "duplex",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
 		"location": "41.3743,2.1759",
-		"user_id": "1",
-		"bedroom": "3 or more",
+		"user_id": "5e9059ef7a856cf23b825500",
+		"bedrooms": "more",
 		"bathrooms": "2",
 		"kitchen": "fully fitted",
 		"condition": "new",
@@ -107,26 +93,22 @@ const users = [{
 		"pets_allowed": 1,
 		"garden": 0,
 		"swimming_pool": 0,
-		"air-conditioning": 1,
+		"air_conditioning": 1,
 		"heating": 0,
 		"floor": "3rd floor",
 		"orientation": "N",
-		"energy_certificate": "very good",
-		"parking": "yes",
-		"timestamp_created": 12345535643,
-		"timestamp_updated": 132445647678,
-		"bargain": 0,
-		"terrace": 0
+		"energy_certificate": "C",
+		"parking": "Included for extra 100€",
+		"bargain": 0
 	},
 	{
-		"id": 5,
-		"kind": "",
+		"kind": "duplex",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
 		"location": "41.3743,2.1759",
-		"user_id": "1",
-		"bedroom": "3 or more",
+		"user_id": "5e9059ef7a856cf23b825500",
+		"bedrooms": "more",
 		"bathrooms": "2",
 		"kitchen": "fully fitted",
 		"condition": "new",
@@ -135,26 +117,22 @@ const users = [{
 		"pets_allowed": 1,
 		"garden": 0,
 		"swimming_pool": 0,
-		"air-conditioning": 1,
+		"air_conditioning": 1,
 		"heating": 0,
 		"floor": "3rd floor",
 		"orientation": "N",
-		"energy_certificate": "very good",
-		"parking": "yes",
-		"timestamp_created": 12345535643,
-		"timestamp_updated": 132445647678,
-		"bargain": 0,
-		"terrace": 0
+		"energy_certificate": "C",
+		"parking": "Included for extra 100€",
+		"bargain": 0
 	},
 	{
-		"id": 6,
-		"kind": "",
+		"kind": "duplex",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
 		"location": "41.3743,2.1759",
-		"user_id": "1",
-		"bedroom": "3 or more",
+		"user_id": "5e9059ef7a856cf23b825500",
+		"bedrooms": "more",
 		"bathrooms": "2",
 		"kitchen": "fully fitted",
 		"condition": "new",
@@ -163,26 +141,22 @@ const users = [{
 		"pets_allowed": 1,
 		"garden": 0,
 		"swimming_pool": 0,
-		"air-conditioning": 1,
+		"air_conditioning": 1,
 		"heating": 0,
 		"floor": "3rd floor",
 		"orientation": "N",
-		"energy_certificate": "very good",
-		"parking": "yes",
-		"timestamp_created": 12345535643,
-		"timestamp_updated": 132445647678,
-		"bargain": 0,
-		"terrace": 0
+		"energy_certificate": "C",
+		"parking": "Included for extra 100€",
+		"bargain": 0
 	},
 	{
-		"id": 7,
-		"kind": "",
+		"kind": "duplex",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
 		"location": "41.3743,2.1759",
-		"user_id": "1",
-		"bedroom": "3 or more",
+		"user_id": "5e9059ef7a856cf23b825500",
+		"bedrooms": "more",
 		"bathrooms": "2",
 		"kitchen": "fully fitted",
 		"condition": "new",
@@ -191,36 +165,33 @@ const users = [{
 		"pets_allowed": 1,
 		"garden": 0,
 		"swimming_pool": 0,
-		"air-conditioning": 1,
+		"air_conditioning": 1,
 		"heating": 0,
 		"floor": "3rd floor",
 		"orientation": "N",
-		"energy_certificate": "very good",
-		"parking": "yes",
-		"timestamp_created": 12345535643,
-		"timestamp_updated": 132445647678,
-		"bargain": 0,
-		"terrace": 0
+		"energy_certificate": "C",
+		"parking": "Included for extra 100€",
+		"bargain": 0
 	}
 ]
 
-function deleteAllUsers() {
-	return User.deleteMany({})
+function deleteAllHomes() {
+	return Home.deleteMany({})
 		.then(() => {
-			console.log('Deleted all users');
+			console.log('Deleted all homes');
 		})
 		.catch((err) => {
-			console.log('Failed to delete all users');
+			console.log('Failed to delete all homes');
 			return Promise.reject(err);
 		});
 }
 
-deleteAllUsers();
+deleteAllHomes();
 
-User.create(users, (err, users) => {
+Home.create(homes, (err, homes) => {
 	if (err) {
 		throw (err);
 	}
-	console.log('Success', users);
+	console.log('Success', homes);
 	mongoose.connection.close();
 });
