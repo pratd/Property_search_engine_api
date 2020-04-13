@@ -7,8 +7,16 @@ Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTo
 
 // create new server instance
 const server = new Hapi.Server({
+	// debug: { request: ['error'] },
 	host: process.env.HOST,
-	port: process.env.PORT || 3000
+	port: process.env.PORT || 3000,
+	"routes": {
+        "cors": {
+			origin: ["*"],
+            headers: ["Accept", "Content-Type"],
+            additionalHeaders: ["X-Requested-With"]
+		}
+    }
 })
 
 

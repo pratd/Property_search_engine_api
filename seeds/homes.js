@@ -10,7 +10,7 @@ const homes = [{
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
-		"kind": "duplex",
+		"kind": "flat",
 		"location": "41.3743,2.1759",
 		"user_id": 101,
 		"bedrooms": "more",
@@ -32,7 +32,7 @@ const homes = [{
 	},
 	{	
 		_id:302,
-		"kind": "duplex",
+		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
@@ -82,7 +82,7 @@ const homes = [{
 	},
 	{
 		_id:304,
-		"kind": "duplex",
+		"kind": "flat",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
@@ -107,7 +107,7 @@ const homes = [{
 	},
 	{
 		_id:305,
-		"kind": "duplex",
+		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
@@ -132,7 +132,7 @@ const homes = [{
 	},
 	{
 		_id:306,
-		"kind": "duplex",
+		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
@@ -157,7 +157,7 @@ const homes = [{
 	},
 	{
 		_id:307,
-		"kind": "duplex",
+		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",

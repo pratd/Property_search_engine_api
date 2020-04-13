@@ -2,3 +2,4 @@ PREASSETS/mood-fotos/*
 lookhaus-logo.svg
 node_modules
 .env
+.vscode/*
