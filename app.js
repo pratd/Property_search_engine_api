@@ -1,7 +1,7 @@
+require('dotenv').config();
 const Hapi = require('hapi');
 const routes = require("./routes");
 const Mongoose = require("mongoose");
-
 require('dotenv').config()
 Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true });
 

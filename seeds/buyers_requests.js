@@ -53,8 +53,8 @@ const users = [{
   }
 ]
 
-function deleteAllUsers() {
-	return User.deleteMany({})
+function deleteAllBuyers() {
+	return Buyer.deleteMany({})
 		.then(() => {
 			console.log('Deleted all users');
 		})
@@ -64,12 +64,12 @@ function deleteAllUsers() {
 		});
 }
 
-deleteAllUsers();
+deleteAllBuyers();
 
-User.create(users, (err, users) => {
+Buyer.create(buyers, (err, buyers) => {
 	if (err) {
 		throw (err);
 	}
-	console.log('Success', users);
+	console.log('Success', buyers);
 	mongoose.connection.close();
 });

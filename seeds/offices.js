@@ -3,24 +3,26 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', { useNewUrlParser: true , useUnifiedTopology: true });
 
 const offices = [{
-	"name":"some desc",
-	"photos":["photo.png"],
-	"description":"some desc long",
-	"user_id":"5e9059ef7a856cf23b825501",
-	"kind":"private",
-	"location":"41.3743,2.1759",
-	"price":12000,
-	"lift":0,
-	"pets_allowed":1,
+	_id: 201,
+	name:"some desc",
+	photos:["photo.png"],
+	description:"some desc long",
+	user_id:101,
+	kind:"private",
+	location:"41.3743,2.1759",
+	price:12000,
+	lift:0,
+	pets_allowed:1,
 	"air-conditioning":1,
-	"terrace": 0,
-	"bargain":0
+	terrace: 0,
+	bargain:0
   },
   {
+	  _id: 202,
 	"name":"some desc",
 	"photos":["photo.png"],
 	"description":"some desc long",
-	"user_id":"5e9059ef7a856cf23b825501",
+	"user_id":101,
 	"kind":"private",
 	"location":"41.3743,2.1759",
 	"price":12000,
@@ -30,10 +32,11 @@ const offices = [{
 	"terrace": 0,
 	"bargain":0
   },{
+	  _id:203,
 	"name":"some desc",
 	"photos":["photo.png"],
 	"description":"some desc long",
-	"user_id":"5e9059ef7a856cf23b825501",
+	"user_id":102,
 	"kind":"private",
 	"location":"41.3743,2.1759",
 	"price":12000,
