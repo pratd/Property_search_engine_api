@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
 	_id: Number,
 	avatar: Object,
-    username: String,
-    password: String,
-    email: String,
+    username: {type: String, required: true, index: {unique: true}},
+    password: {type: String, required: true},
+    email: {type: String, required: true, index: {unique: true}},
     // homes_ids: [
 	// 	{ type: mongoose.Schema.Types.ObjectId, ref: 'homes' }
 	// ],

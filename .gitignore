@@ -3,3 +3,5 @@ lookhaus-logo.svg
 node_modules
 .env
 .vscode/*
+.jshintrc
+config.js
