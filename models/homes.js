@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const homeSchema = new Schema({
-	_id:Number,
+	// _id:Number,
 	name: String,
 	photos: Array,
 	description: String,
 	kind: String,
-	location: String,
+	location: Array,
 	user_id: Number,
 	bedrooms: String,
 	bathrooms: String,
@@ -24,7 +24,7 @@ const homeSchema = new Schema({
 	orientation: String,
 	energy_certificate: String,
 	parking: String,
-	bargain: Boolean
+	bargain: {type: Boolean, default: 0}
 },
 {
 	timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }

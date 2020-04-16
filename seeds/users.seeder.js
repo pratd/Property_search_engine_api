@@ -4,31 +4,28 @@ mongoose.connect('mongodb://localhost/lookhaus', { useNewUrlParser: true , useUn
 
 
 const users = [{
-		_id: 101,
 		avatar: "../img",
 		username: "lorem",
 		email: "loremipsum@gmail.com",
 		password: "1",
-		//property_id: "property1",
-		role: "admin"
+		property_ids: ['5e988e2189280c2746373c7a', '5e988e6aa831be2844cc3303'],
+		is_admin: 1
 	},
 	{
-		_id: 102,
 		avatar: "../img",
 		username: "lorem",
 	    email: "loremipsum@gmail.com",
 		password: "2",
-		//property_id: "property2",
-		role: "admin"
+		property_ids: ['5e988e2189280c2746373c7e'],
+		is_admin: 1
 	},
 	{
-		_id: 103,
 		avatar: "../img",
 		username: "lorem",
 		email: "loremipsum@gmail.com",
 		password: "3",
-		//property_id: "property3",
-		role: "admin"
+		property_ids: ['5e988e2189280c2746373c7f'],
+		is_admin: 1
 	}
 ]
 

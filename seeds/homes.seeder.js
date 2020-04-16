@@ -6,7 +6,6 @@ mongoose.connect('mongodb://localhost/lookhaus', {
 });
 
 const homes = [{
-		_id:301,
 		"name": "some desc",
 		"photos": ['img.png'],
 		"description": "some desc long",
@@ -30,8 +29,7 @@ const homes = [{
 		"parking": "Included for extra 100€",
 		"bargain": 0
 	},
-	{	
-		_id:302,
+	{
 		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
@@ -56,7 +54,6 @@ const homes = [{
 		"bargain": 0
 	},
 	{
-		_id:303,
 		"kind": "duplex",
 		"name": "some desc",
 		"photos": ['img.png'],
@@ -81,7 +78,6 @@ const homes = [{
 		"bargain": 0
 	},
 	{
-		_id:304,
 		"kind": "flat",
 		"name": "some desc",
 		"photos": ['img.png'],
@@ -106,7 +102,6 @@ const homes = [{
 		"bargain": 0
 	},
 	{
-		_id:305,
 		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
@@ -131,7 +126,6 @@ const homes = [{
 		"bargain": 0
 	},
 	{
-		_id:306,
 		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
@@ -156,7 +150,6 @@ const homes = [{
 		"bargain": 0
 	},
 	{
-		_id:307,
 		"kind": "home",
 		"name": "some desc",
 		"photos": ['img.png'],
