@@ -3,22 +3,6 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lookhaus', { useNewUrlParser: true , useUnifiedTopology: true });
 
 const offices = [{
-	_id: 201,
-	name:"some desc",
-	photos:["photo.png"],
-	description:"some desc long",
-	user_id:101,
-	kind:"private",
-	location: [41.3743,2.1759],
-	price:12000,
-	lift:0,
-	pets_allowed:1,
-	"air-conditioning":1,
-	terrace: 0,
-	bargain:0
-  },
-  {
-	  _id: 202,
 	"name":"some desc",
 	"photos":["photo.png"],
 	"description":"some desc long",
@@ -32,7 +16,6 @@ const offices = [{
 	"terrace": 0,
 	"bargain":0
   },{
-	  _id:203,
 	"name":"some desc",
 	"photos":["photo.png"],
 	"description":"some desc long",

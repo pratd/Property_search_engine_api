@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const officeSchema = new Schema({
-	_id:Number,
+	// _id:Number,
 	name: String,
-	photos: [],
+	photos: Array,
 	description: String,
 	user_id: Number,
 	kind: String,
-	location: String,
+	location: Array,
 	price: Number,
 	lift: Boolean,
 	pets_allowed: Boolean,
