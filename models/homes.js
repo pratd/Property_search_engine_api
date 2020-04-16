@@ -8,7 +8,6 @@ const homeSchema = new Schema({
 	description: String,
 	kind: String,
 	location: Array,
-	user_id: Number,
 	bedrooms: String,
 	bathrooms: String,
 	kitchen: String,

@@ -6,7 +6,6 @@ const officeSchema = new Schema({
 	name: String,
 	photos: Array,
 	description: String,
-	user_id: Number,
 	kind: String,
 	location: Array,
 	price: Number,
