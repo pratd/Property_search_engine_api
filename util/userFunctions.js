@@ -1,11 +1,11 @@
 const Boom = require('boom');
 const User = require('../models/user');
 
-const  verifyUniqueUser = async(req, res) =>{
+const  verifyUniqueUser = (req, res) =>{
     //TODO finding the entry in database that matches
     //TODO either email or username
 
-    await User.findOne({
+    User.findOne({
         $or:[
             {email: req.payload.email},
             {username: req.payload.username}
@@ -15,18 +15,17 @@ const  verifyUniqueUser = async(req, res) =>{
         //!is already taken and error out if so
         if(user){
             if(user.username === req.payload.username){
-                res.response(Boom.badRequest('Username taken'));
+                res.reponse(Boom.badRequest('Username taken'));
             }
             if(user.email === req.payload.email){
-                res.response(Boom.badRequest('Email exists'));
+                res.reponse(Boom.badRequest('Email exists'));
             }
         }
         //if everything checks out send the payload through
         //the route handler
         res.response(req.payload);
     });
-    return res.response;
-}
+};
 //TODO: verify credentials after loggedIn
 
 function verifyCredentials(req, res ){
