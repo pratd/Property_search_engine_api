@@ -14,7 +14,7 @@ const userSchema = new Schema({
     // offices_ids: [
 	// 	{ type: mongoose.Schema.Types.ObjectId, ref: 'offices' }
 	// ],
-    is_admin: {type: Boolean, default: 0}
+    role: {type: String, default: "user"}
 	},
 	{
 		timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
