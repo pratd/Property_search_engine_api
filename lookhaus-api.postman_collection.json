@@ -110,7 +110,7 @@
 			"response": []
 		},
 		{
-			"name": "GET Home detail",
+			"name": "GET Home Detail",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -140,6 +140,115 @@
 					"path": [
 						"office",
 						"{{office_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SIGNUP - Authorisation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"cacatua@cacatua.com\",\n\t\"username\": \"cacatua\",\n\t\"password\": \"prattyaman\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/signup/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"signup",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Offices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/offices?price=1200",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"offices"
+					],
+					"query": [
+						{
+							"key": "kind",
+							"value": "private",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "1200"
+						},
+						{
+							"key": "lift",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "pets_allowed",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "terrace",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "bargain",
+							"value": "false",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN - Authentication",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"cacatua@cacatua.com\",\n\t\"password\": \"prattyaman\"\n}"
+				},
+				"url": {
+					"raw": "{{URL}}/login/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"login",
+						"users"
 					]
 				}
 			},
