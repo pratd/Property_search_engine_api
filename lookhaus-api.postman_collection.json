@@ -20,6 +20,11 @@
 					],
 					"query": [
 						{
+							"key": "sort",
+							"value": "invert",
+							"disabled": true
+						},
+						{
 							"key": "page",
 							"value": "2",
 							"disabled": true
@@ -103,6 +108,75 @@
 							"key": "bargain",
 							"value": "false",
 							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "asc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Offices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/offices",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"offices"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "invert",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "kind",
+							"value": "private",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "1200",
+							"disabled": true
+						},
+						{
+							"key": "lift",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "pets_allowed",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "terrace",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "bargain",
+							"value": "false",
+							"disabled": true
 						}
 					]
 				}
@@ -173,54 +247,6 @@
 					"path": [
 						"signup",
 						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET Offices",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URL}}/offices?price=1200",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"offices"
-					],
-					"query": [
-						{
-							"key": "kind",
-							"value": "private",
-							"disabled": true
-						},
-						{
-							"key": "price",
-							"value": "1200"
-						},
-						{
-							"key": "lift",
-							"value": "false",
-							"disabled": true
-						},
-						{
-							"key": "pets_allowed",
-							"value": "true",
-							"disabled": true
-						},
-						{
-							"key": "terrace",
-							"value": "false",
-							"disabled": true
-						},
-						{
-							"key": "bargain",
-							"value": "false",
-							"disabled": true
-						}
 					]
 				}
 			},
