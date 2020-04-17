@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "ec29b624-604f-494e-a3b3-1aa796d9f0e9",
+		"name": "lookhaus-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Homes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/homes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"homes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "kind",
+							"value": "flat",
+							"disabled": true
+						},
+						{
+							"key": "bedrooms",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "bathrooms",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "kitchen",
+							"value": "fully fitted",
+							"disabled": true
+						},
+						{
+							"key": "condition",
+							"value": "new",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "1200",
+							"disabled": true
+						},
+						{
+							"key": "lift",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "pets_allowed",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "garden",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "swimming_pool",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "air_conditioning",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "heating",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "orientation",
+							"value": "N",
+							"disabled": true
+						},
+						{
+							"key": "energy_certificate",
+							"value": "C",
+							"disabled": true
+						},
+						{
+							"key": "bargain",
+							"value": "false",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
