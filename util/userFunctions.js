@@ -21,37 +21,32 @@ async function verifyUniqueUser (req, res){
             throw (Boom.badRequest('Email exists'));
         }
     }
-    
     //if everything checks out send the payload through
     //the route handler
     return res.response(req.payload);
 }
 //TODO: verify credentials after loggedIn
 
-function verifyCredentials(req, res ){
+async function verifyCredentials(req, res ){
     const password = req.payload.password;
     //finding the entry from database that 
     //matched either the email or username
-    User.findOne({
+    const user = await User.findOne({
         $or:[
             { email: req.payload.email},
             {username: req.payload.username}
         ]
-    },(err,user) => {
-        if(user){
-            bcrypt.compare(password, user.password, (err, isValid) =>{
-                if(isValid){
-                    req(user);
-                }
-                else {
-                    res.response(Boom.badRequest('Incorrect password! '));
-                }
-            });
-        }
-        else {
-            res.response(Boom.badRequest('Incorrect username or email!'));
-        }
     });
+    if(user){
+        const isValid = await bcrypt.compare(password, user.password);
+        if(!isValid){
+            throw (Boom.badRequest('Incorrect password! '));
+        }
+        return res.response(user);
+    }
+    else{
+        throw (Boom.badRequest('Incorrect username or email!'));
+    }
 }
 module.exports = {
     verifyUniqueUser : verifyUniqueUser,

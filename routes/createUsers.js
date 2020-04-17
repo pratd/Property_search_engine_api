@@ -32,19 +32,21 @@ module.exports = {
             user.username = req.payload.username;
             user.role = req.payload.role;
 
-            const password = await hashPassword(req.payload.password, async(err,hash)=>{
-                if(err){
-                    throw Boom.badRequest(err);
-                }
-                user.password = hash;
-                user.save( (err,user)=>{
+            const hash = await hashPassword(req.payload.password);
+            if(!hash){
+                throw Boom.badRequest(err);
+            }
+            user.password = hash;
+            const savedUser = await new Promise ( (resolve, reject)=>{ //assuming a new promise enable save
+                user.save(function(err, user){
                     if(err){
                         throw Boom.badRequest(err);
                     }
-                    //if user is saved successfully, issue a JWT
-                    res.response({ id_token: createToken(user)}).code(201);
+                    resolve(user);
                 });
             });
+            //if user is saved successfully, issue a JWT
+            return res.response({ id_token: createToken(savedUser)}).code(201);
         },
         // //validate the payload against the Joi schema
         validate:{
