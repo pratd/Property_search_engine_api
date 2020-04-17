@@ -4,4 +4,4 @@ node_modules
 .env
 .vscode/*
 .jshintrc
-# config.js
+config.js

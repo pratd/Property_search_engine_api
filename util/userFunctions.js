@@ -1,5 +1,6 @@
 const Boom = require('boom');
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 async function verifyUniqueUser (req, res){
     //TODO finding the entry in database that matches
