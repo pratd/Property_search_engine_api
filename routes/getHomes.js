@@ -16,13 +16,22 @@ module.exports = {
 		req.query.condition ? findQuery.push({condition: req.query.condition}): findQuery = findQuery;
 		req.query.bargain ? findQuery.push({bargain: req.query.bargain}): findQuery = findQuery;
 
-		try {
-			const homes = await homeSchema.find({
-				$and: findQuery
-			}).skip(pageOptions.page * pageOptions.limit).limit(pageOptions.limit)
-			return res.response(homes);
-		} catch (error) {
-			return res.response(error).code(500);
+		if(findQuery.length > 0){
+			try {
+				const homes = await homeSchema.find({
+					$and: findQuery
+				}).skip(pageOptions.page * pageOptions.limit).limit(pageOptions.limit)
+				return res.response(homes);
+			} catch (error) {
+				return res.response(error).code(500);
+			}
+		}else{
+			try {
+				const homes = await homeSchema.find().skip(pageOptions.page * pageOptions.limit).limit(pageOptions.limit)
+				return res.response(homes);
+			} catch (error) {
+				return res.response(error).code(500);
+			}
 		}
 	}
 };
