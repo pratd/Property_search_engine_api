@@ -169,18 +169,18 @@ const homes = [{
 	}
 ]
 
-function deleteAllHomes() {
-	return Home.deleteMany({})
-		.then(() => {
-			console.log('Deleted all homes');
-		})
-		.catch((err) => {
-			console.log('Failed to delete all homes');
-			return Promise.reject(err);
-		});
-}
+// function deleteAllHomes() {
+// 	return Home.deleteMany({})
+// 		.then(() => {
+// 			console.log('Deleted all homes');
+// 		})
+// 		.catch((err) => {
+// 			console.log('Failed to delete all homes');
+// 			return Promise.reject(err);
+// 		});
+// }
 
-deleteAllHomes();
+// deleteAllHomes();
 
 Home.create(homes, (err, homes) => {
 	if (err) {

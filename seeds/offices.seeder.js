@@ -29,18 +29,18 @@ const offices = [{
   }
 ]
 
-function deleteAllOffices() {
-	return Office.deleteMany({})
-		.then(() => {
-			console.log('Deleted all offices');
-		})
-		.catch((err) => {
-			console.log('Failed to delete all offices');
-			return Promise.reject(err);
-		});
-}
+// function deleteAllOffices() {
+// 	return Office.deleteMany({})
+// 		.then(() => {
+// 			console.log('Deleted all offices');
+// 		})
+// 		.catch((err) => {
+// 			console.log('Failed to delete all offices');
+// 			return Promise.reject(err);
+// 		});
+// }
 
-deleteAllOffices();
+// deleteAllOffices();
 
 Office.create(offices, (err, offices) => {
 	if (err) {
