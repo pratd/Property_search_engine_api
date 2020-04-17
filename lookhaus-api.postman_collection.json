@@ -11,12 +11,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/homes",
-					"protocol": "http",
+					"raw": "{{URL}}/homes",
 					"host": [
-						"localhost"
+						"{{URL}}"
 					],
-					"port": "3000",
 					"path": [
 						"homes"
 					],
@@ -106,6 +104,42 @@
 							"value": "false",
 							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Home detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/home/{{home_id}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"home",
+						"{{home_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Office Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/office/{{office_id}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"office",
+						"{{office_id}}"
 					]
 				}
 			},
