@@ -1,8 +1,6 @@
 const fs = require("fs");
 const server = require("../index.js");
 const homeSchema = require("../models/homes");
-require("dotenv").config();
-const secretKey = process.env.SECRET;
 
 module.exports = {
   method: "POST",

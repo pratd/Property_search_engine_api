@@ -1,17 +1,74 @@
+const fs = require("fs");
+const server = require("../index.js");
 const officeSchema = require("../models/office");
 
 module.exports = {
   method: "POST",
   path: "/office/add",
   config: {
-    auth: {
-      strategy: "jwtokenization",
-      scope: ["user"],
+    // auth: {
+    //   strategy: "jwtokenization",
+    //   scope: ["user"],
+    // },
+    payload: {
+      output: "stream",
+      parse: true,
+      allow: [
+        "application/json",
+        "multipart/form-data",
+        "image/jpeg",
+        "application/pdf",
+        "application/x-www-form-urlencoded",
+      ],
+      //   multipart: true,
+      maxBytes: 1024 * 1024 * 100,
+      timeout: false,
     },
     handler: async (req, res) => {
+      const data = req.payload;
+
+      const photosArray = [];
+
+      if (data.photos) {
+        if (!Array.isArray(data.photos)) {
+          data.photos = [data.photos];
+        }
+        data.photos.forEach((photo) => {
+          const phototoSave = {
+            name: photo.hapi.filename,
+            path: __dirname + "/../uploads/" + photo.hapi.filename,
+          };
+          photosArray.push(phototoSave);
+          const file = fs.createWriteStream(
+            __dirname + "/../uploads/" + photo.hapi.filename
+          );
+          file.on("error", (err) => console.error(err));
+          photo.pipe(file);
+          photo.on("end", (err) => {
+            const ret = [
+              {
+                filename: photo.hapi.filename,
+                headers: photo.hapi.headers,
+              },
+            ];
+            return JSON.stringify(ret);
+          });
+        });
+      }
+
+      let photosArrayToSave = photosArray.map((photo) => {
+        return photo.name;
+      });
+
+      const definitiveArray = [];
+
+      photosArrayToSave = photosArrayToSave.forEach((filename) => {
+        definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
+      });
+
       var office = new officeSchema({
         name: req.payload.name,
-        photos: req.payload.photos,
+        photos: definitiveArray,
         description: req.payload.description,
         kind: req.payload.kind,
         location: req.payload.location,
