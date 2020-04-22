@@ -1,8 +1,8 @@
-const Boom = require('boom');
-const User = require('../models/user');
-const authenticateUserSchema = require('../schemas/authenticateUser');
-const verifyCredentials = require('../util/userFunctions').verifyCredentials;
-const createToken = require('../util/token');
+const Boom = require("boom");
+const User = require("../models/user");
+const authenticateUserSchema = require("../schemas/authenticateUser");
+const verifyCredentials = require("../util/userFunctions").verifyCredentials;
+const createToken = require("../util/token");
 
 module.exports ={
     method: 'POST',
