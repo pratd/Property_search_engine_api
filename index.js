@@ -36,7 +36,7 @@ const validateFunc = async (decoded, request) => {
 const bootUpServer = async () => {
   await server.register(require("hapi-auth-jwt2"));
 
-  server.auth.strategy("jwt", "jwt", {
+  server.auth.strategy("jwtokenization", "jwt", {
     key: secret,
     verify: { algorithms: ["HS256"] },
     validate: validateFunc,
