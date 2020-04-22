@@ -1,8 +1,6 @@
 const fs = require("fs");
 const server = require("../index.js");
 const homeSchema = require("../models/homes");
-require("dotenv").config();
-const secretKey = process.env.SECRET;
 
 module.exports = {
   method: "POST",
@@ -26,31 +24,53 @@ module.exports = {
       maxBytes: 1024 * 1024 * 100,
       timeout: false,
     },
+
+    //!This handler needs refactor
     handler: async (req, res) => {
       const data = req.payload;
 
-      // console.log(req.payload.photos);
+      const photosArray = [];
+
       if (data.photos) {
-        const name = data.photos.hapi.filename;
-        const path = __dirname + "/../uploads/" + name;
-        const file = fs.createWriteStream(path);
-
-        file.on("error", (err) => console.error(err));
-
-        data.photos.pipe(file);
-
-        data.photos.on("end", (err) => {
-          const ret = {
-            filename: data.photos.hapi.filename,
-            headers: data.photos.hapi.headers,
+        if (!Array.isArray(data.photos)) {
+          data.photos = [data.photos];
+        }
+        data.photos.forEach((photo) => {
+          const phototoSave = {
+            name: photo.hapi.filename,
+            path: __dirname + "/../uploads/" + photo.hapi.filename,
           };
-          return JSON.stringify(ret);
+          photosArray.push(phototoSave);
+          const file = fs.createWriteStream(
+            __dirname + "/../uploads/" + photo.hapi.filename
+          );
+          file.on("error", (err) => console.error(err));
+          photo.pipe(file);
+          photo.on("end", (err) => {
+            const ret = [
+              {
+                filename: photo.hapi.filename,
+                headers: photo.hapi.headers,
+              },
+            ];
+            return JSON.stringify(ret);
+          });
         });
       }
 
+      let photosArrayToSave = photosArray.map((photo) => {
+        return photo.name;
+      });
+
+      const definitiveArray = [];
+
+      photosArrayToSave = photosArrayToSave.forEach((filename) => {
+        definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
+      });
+
       var home = new homeSchema({
         name: data.name,
-        photos: server.info.uri + "/uploads/" + data.photos.hapi.filename,
+        photos: definitiveArray,
         description: data.description,
         kind: data.kind,
         location: data.location,
