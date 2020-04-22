@@ -7,8 +7,44 @@ module.exports ={
     config:{
         handler: async(req, res)=>{
             try{
-                let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},
-                    {$push: {"photos":req.payload.images}},
+                //getting the photos first
+                const data = req.payload;
+                const photosArray = [];
+                if (data.photos) {
+                    if (!Array.isArray(data.photos)) {
+                        data.photos = [data.photos];
+                    }
+                data.photos.forEach((photo) => {
+                    const phototoSave = {
+                        name: photo.hapi.filename,
+                        path: __dirname + "/../uploads/" + photo.hapi.filename,
+                    };
+                    photosArray.push(phototoSave);
+                    const file = fs.createWriteStream(
+                        __dirname + "/../uploads/" + photo.hapi.filename
+                    );
+                    file.on("error", (err) => console.error(err));
+                    photo.pipe(file);
+                    photo.on("end", (err) => {
+                        const ret = [
+                            {
+                                filename: photo.hapi.filename,
+                                headers: photo.hapi.headers,
+                            },
+                        ];
+                        return JSON.stringify(ret);
+                    });
+                });
+            }
+            let photosArrayToSave = photosArray.map((photo) => {
+                return photo.name;
+            });
+            const definitiveArray = [];
+            photosArrayToSave = photosArrayToSave.forEach((filename) => {
+                definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
+            });
+            let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},
+                    {$push: {"photos":definitiveArray}},
                     req.payload,{new:true});
                     return res.response(result);
             }catch (error){
@@ -36,7 +72,7 @@ module.exports ={
         validate:{
             payload: updateHouseSchema,
             failAction: (reques, resp, error)=>{
-                return error.isJoi ? resp.response(error.details[0]).takeover() : 
+                return error.isJoi ? resp.response(error.details[0]).takeover() :
                 resp.response(error).takeover();
             }
         }

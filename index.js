@@ -5,7 +5,7 @@ const Boom = require('boom');
 const glob = require('glob');
 const path = require('path');
 const secret = process.env.SECRET;
-const Inert = require('@hapi/inert');
+//const Inert = require('@hapi/inert');
 require('dotenv').config()
 Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex:true });
 // create new server instance
@@ -31,7 +31,7 @@ const validateFunc = async (decoded, request) => {
 
 //SERVER BOOTUP
 const bootUpServer = async () => {
-  await server.register([require("hapi-auth-jwt2"), Inert]);
+  await server.register([require("hapi-auth-jwt2")]);
 
   server.auth.strategy("jwtokenization", "jwt", {
     key: secret,
