@@ -5,7 +5,7 @@ const Boom = require("boom");
 const glob = require("glob");
 const path = require("path");
 const secret = process.env.SECRET;
-require("dotenv").config();
+
 Mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,13 +24,20 @@ const server = new Hapi.Server({
     },
   },
 });
+
 //SERVER BOOTUP
 const bootUpServer = async () => {
   await server.register(require("hapi-auth-jwt2"));
 
-  server.auth.strategy("jwtokenization", "jwt", {
+  server.auth.strategy("jwt", "jwt", {
     key: secret,
     verify: { algorithms: ["HS256"] },
+    validate: async (decoded, request) => {
+      if (decoded) {
+        return { isValid: true };
+      }
+      return { isValid: false };
+    },
   });
   //get default auth
   //server.auth.default('jwt');

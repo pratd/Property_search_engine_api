@@ -1,21 +1,18 @@
 // const homeSchema = require("../models/homes");
 const userSchema = require("../models/user");
+require("dotenv").config();
+const secretKey = process.env.SECRET;
 
 module.exports = {
-  method: "POST",
+  method: "GET",
   path: "/home/add",
+  handler: (req, res) => {
+    return res.response("hello!");
+  },
   config: {
     auth: {
-      strategy: "jwtokenization",
+      strategy: "jwt",
       scope: ["user"],
-    },
-    handler: async (req, res) => {
-      try {
-        const user = await userSchema.find().exec();
-        return res.response(user);
-      } catch (error) {
-        return res.response(error).code(500);
-      }
     },
   },
 };
