@@ -6,15 +6,18 @@ module.exports ={
     path:'/update/houses/{id}',
     config:{
         handler: async(req, res)=>{
-            // try{
-            //     let result = await HouseModel.findByIdAndUpdate(req.params.id,
-            //         req.payload,{new:true});
-            //         return res.response(result);
-            // }catch (error){
-            //     return Boom.badRequest('Unexpected Input!');
-            // }
-            console.log(req.payload);
-            return 'i have a stream';
+            try{
+                let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},
+                    {$push: {"photos":req.payload.images}},
+                    req.payload,{new:true});
+                    return res.response(result);
+            }catch (error){
+                console.log(req.params.id, req.payload.images);
+
+                return Boom.badRequest('Unexpected Input!');
+            }
+            // console.log(req.payload);
+            // return 'i have a stream';
         },
          // Add authentication to this route
         // The user must have a scope of `admin`

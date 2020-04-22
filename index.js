@@ -21,7 +21,7 @@ const server = new Hapi.Server({
     },
   },
 });
-
+//validation function for the token
 const validateFunc = async (decoded, request) => {
   if (decoded) {
     return { isValid: true };
@@ -31,7 +31,7 @@ const validateFunc = async (decoded, request) => {
 
 //SERVER BOOTUP
 const bootUpServer = async () => {
-  await server.register(require("hapi-auth-jwt2"));
+  await server.register([require("hapi-auth-jwt2"), Inert]);
 
   server.auth.strategy("jwtokenization", "jwt", {
     key: secret,
