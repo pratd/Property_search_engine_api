@@ -36,7 +36,7 @@ module.exports = {
       });
       try {
         await home.save();
-        return res.response("home saved to database");
+        return res.response("New home saved to database");
       } catch {
         return res.response("There was an error trying to create this home");
       }
