@@ -25,6 +25,13 @@ const server = new Hapi.Server({
   },
 });
 
+const validateFunc = async (decoded, request) => {
+  if (decoded) {
+    return { isValid: true };
+  }
+  return { isValid: false };
+};
+
 //SERVER BOOTUP
 const bootUpServer = async () => {
   await server.register(require("hapi-auth-jwt2"));
@@ -32,12 +39,7 @@ const bootUpServer = async () => {
   server.auth.strategy("jwt", "jwt", {
     key: secret,
     verify: { algorithms: ["HS256"] },
-    validate: async (decoded, request) => {
-      if (decoded) {
-        return { isValid: true };
-      }
-      return { isValid: false };
-    },
+    validate: validateFunc,
   });
   //get default auth
   //server.auth.default('jwt');
