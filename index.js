@@ -1,12 +1,13 @@
 require('dotenv').config();
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 const Mongoose = require("mongoose");
 const Boom = require('boom');
 const glob = require('glob');
 const path = require('path');
 const secret = require('./config');
+const Inert = require('@hapi/inert');
 require('dotenv').config()
-Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true });
+Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex:true });
 // create new server instance
 const server = new Hapi.Server({
 	// debug: { request: ['error'] },
@@ -20,14 +21,25 @@ const server = new Hapi.Server({
 		}
 	}
 });
+//validator
+const validator = (decoded, request, callback) => {
+	// This is a simple check that the `sub` claim
+	// exists in the access token. 
+	if (decoded && decoded.sub) {
+	  return callback(null, true, {});
+	}
+  
+	return callback(null, false, {});
+  }
 //SERVER BOOTUP
 const bootUpServer = async () => {
 	
-	await server.register(require('hapi-auth-jwt2'));
+	await server.register([require('hapi-auth-jwt2'), Inert]);
 	
 	server.auth.strategy('jwtokenization','jwt',{
 		key: secret,
-		verify: {algorithms: ['HS256']}
+		verify: {algorithms: ['HS256']},
+		validate: validator
 	});
 	//get default auth
 	//server.auth.default('jwt');

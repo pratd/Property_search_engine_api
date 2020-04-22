@@ -48,6 +48,10 @@ module.exports = {
             //if user is saved successfully, issue a JWT
             return res.response({ id_token: createToken(savedUser)}).code(201);
         },
+        payload:{
+            allow: ['application/json', 'multipart/form-data', 'image/jpeg', 'application/pdf', 'application/x-www-form-urlencoded'],
+            multipart: true,
+        },
         // //validate the payload against the Joi schema
         validate:{
             payload: createUserSchema,

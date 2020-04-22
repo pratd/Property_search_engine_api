@@ -9,23 +9,23 @@ const users = [{
 		email: "loremipsum@gmail.com",
 		password: "1",
 		property_ids: ['5e988e2189280c2746373c7a', '5e988e6aa831be2844cc3303'],
-		is_admin: 1
+		role: "admin"
 	},
 	{
 		avatar: "../img",
-		username: "lorem",
-	    email: "loremipsum@gmail.com",
+		username: "lorem1",
+	    email: "loremipsum@gmail.com1",
 		password: "2",
 		property_ids: ['5e988e2189280c2746373c7e'],
-		is_admin: 1
+		role: "user"
 	},
 	{
 		avatar: "../img",
-		username: "lorem",
-		email: "loremipsum@gmail.com",
+		username: "lorem2",
+		email: "loremipsum@gmail.com2",
 		password: "3",
 		property_ids: ['5e988e2189280c2746373c7f'],
-		is_admin: 1
+		role: "user"
 	}
 ]
 
