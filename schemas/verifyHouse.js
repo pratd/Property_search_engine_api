@@ -3,6 +3,7 @@ const Joi = require('joi');
 const verifyHouseSchema = Joi.object({
     "name":Joi.string().optional(),
 	"photos": Joi.any().meta({swaggerType: 'file'}).description('file to upload').optional(),
+	"deletePhotos":Joi.any().meta({swaggerType: 'file'}).description('file to upload').optional(),
 	"description": Joi.string().optional(),
 	"kind": Joi.string().optional(),
 	//"location": [41.3743,2.1759],

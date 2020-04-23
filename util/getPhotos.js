@@ -39,4 +39,46 @@ async function getPhotos(req){
     });
     return definitiveArray;
 }
-module.exports = getPhotos;
+async function deletePhotos(req){
+    const data = req.payload;
+    const photosArray = [];
+    if (data.deletePhotos) {
+        if (!Array.isArray(data.deletePhotos)) {
+            data.deletePhotos = [data.deletePhotos];
+        }
+        data.deletePhotos.forEach((photo) => {
+            const phototoSave = {
+                name: photo.hapi.filename,
+                path: __dirname + "/../deletePhotos/" + photo.hapi.filename,
+            };
+            photosArray.push(phototoSave);
+            const file = fs.createWriteStream(
+                __dirname + "/../deletePhotos/" + photo.hapi.filename
+            );
+            file.on("error", (err) => console.error(err));
+            photo.pipe(file);
+            photo.on("end", (err) => {
+                const ret = [
+                    {
+                        filename: photo.hapi.filename,
+                        headers: photo.hapi.headers,
+                    },
+                ];
+                return JSON.stringify(ret);
+            });
+        });
+    }
+    let photosArrayToDelete = photosArray.map((photo) => {
+        return photo.name;
+    });
+    //photos to delete
+    const definitiveDeleteArray = [];
+    photosArrayToDelete = photosArrayToDelete.forEach((filename) => {
+        definitiveDeleteArray.push(`${server.info.uri}/uploads/${filename}`);
+    });
+    return definitiveDeleteArray;
+}
+module.exports = {
+    getPhotos: getPhotos,
+    deletePhotos: deletePhotos
+};

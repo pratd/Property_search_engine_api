@@ -1,25 +1,31 @@
 const HouseModel = require('../models/homes');
 const updateHouseSchema = require('../schemas/verifyHouse').verifyHouseSchema;
 const Boom = require('boom');
-const getPhotoArray = require('../util/getPhotos');
+const getPhotoArray = require('../util/getPhotos').getPhotos;
+const deletePhotoArray = require('../util/getPhotos').deletePhotos;
 module.exports ={
     method: "PUT",
     path:'/home/update/{id}',
     config:{
         handler: async(req, res)=>{
 
-            //getting the photos first
-            const definitiveArray = await getPhotoArray(req);
+            //getting the photos first to push
+            const arraytoPush = await getPhotoArray(req);
+            const arraytoDelete = await deletePhotoArray(req);
             try{
-                let result = await HouseModel.findByIdAndUpdate({"_id":req.params.id}, 
-                    {$push: {"photos":{ $each: definitiveArray}}}, req.payload,{new:true});
-                return res.response(result);
+                //*update photos first
+                let pushedArray = await HouseModel.findByIdAndUpdate({_id:req.params.id},{ $push: {photos: {$each: arraytoPush }}},{new:true});
+                if (req.payload.photos){
+                    req.payload.photos=undefined;
+                }
+                //*final update
+                await HouseModel.findByIdAndUpdate(req.params.id,req.payload,{new:true,omitUndefined:true});
+                //* delete what is not required
+                let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},{$pullAll:{photos: arraytoDelete}}, {new : true});
+                return res.response('hi');
             }catch (error){
-                console.log(req.params.id);
                 return Boom.badRequest('Unexpected Input!');
             }
-            // console.log(req.payload);
-            // return 'i have a stream';
         },
         // Add authentication to this route
         // The user must have a scope of `admin`
