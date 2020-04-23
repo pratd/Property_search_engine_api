@@ -1,5 +1,5 @@
-const HouseModel = require('../models/homes');
-const updateHouseSchema = require('../schemas/verifyHouse').updateHouseSchema;
+const OfficeModel = require('../models/office');
+const updateOfficeSchema = require('../schemas/verifyOffice').updateOfficeSchema;
 const Boom = require('boom');
 const getPhotoArray = require('../util/getPhotos').getPhotos;
 const deletePhotoArray = require('../util/getPhotos').deletePhotos;
@@ -14,14 +14,14 @@ module.exports ={
             const arraytoDelete = await deletePhotoArray(req);
             try{
                 //*update photos first
-                await HouseModel.findByIdAndUpdate({_id:req.params.id},{ $push: {photos: {$each: arraytoPush }}},{new:true});
+                await OfficeModel.findByIdAndUpdate({_id:req.params.id},{ $push: {photos: {$each: arraytoPush }}},{new:true});
                 if (req.payload.photos){
                     req.payload.photos=undefined;
                 }
                 //*final update
-                await HouseModel.findByIdAndUpdate(req.params.id,req.payload,{new:true,omitUndefined:true});
+                await OfficeModel.findByIdAndUpdate(req.params.id,req.payload,{new:true,omitUndefined:true});
                 //* delete what is not required
-                let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},{$pullAll:{photos: arraytoDelete}}, {new : true});
+                let result = await OfficeModel.findByIdAndUpdate({_id:req.params.id},{$pullAll:{photos: arraytoDelete}}, {new : true});
                 return res.response(result);
             }catch (error){
                 return Boom.badRequest('Unexpected Input!');
@@ -42,7 +42,7 @@ module.exports ={
             timeout: false,
         },
         validate:{
-            payload: updateHouseSchema,
+            payload: updateOfficeSchema,
             failAction: (reques, resp, error)=>{
                 return error.isJoi ? resp.response(error.details[0]).takeover() :
                 resp.response(error).takeover();
