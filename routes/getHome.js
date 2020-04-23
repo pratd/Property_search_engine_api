@@ -1,14 +1,14 @@
-const homeSchema = require("../models/homes");
+const homeSchema = require("../models/home");
 module.exports = {
-	method: "GET",
-	path: "/home/{id}",
-	handler: async (req, res) => {
-		const homeId = req.params.id;
-		try {
-			const property = await homeSchema.findById(homeId).exec()
-			return res.response(property);
-		} catch (error) {
-			return res.response(error).code(500);
-		}
-	}
+  method: "GET",
+  path: "/home/{id}",
+  handler: async (req, res) => {
+    const homeId = req.params.id;
+    try {
+      const property = await homeSchema.findById(homeId).exec();
+      return res.response(property);
+    } catch (error) {
+      return res.response(error).code(500);
+    }
+  },
 };

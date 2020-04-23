@@ -1,15 +1,15 @@
 const fs = require("fs");
 const server = require("../index.js");
-const homeSchema = require("../models/homes");
+const homeSchema = require("../models/home");
 
 module.exports = {
   method: "POST",
   path: "/home/add",
   config: {
-    // auth: {
-    //   strategy: "jwtokenization",
-    //   scope: ["user"],
-    // },
+    auth: {
+      strategy: "jwtokenization",
+      scope: ["user"],
+    },
     payload: {
       output: "stream",
       parse: true,
@@ -67,6 +67,7 @@ module.exports = {
       photosArrayToSave = photosArrayToSave.forEach((filename) => {
         definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
       });
+      console.log(req.auth.credentials, "req.auth.credentials");
 
       var home = new homeSchema({
         name: data.name,
@@ -91,6 +92,9 @@ module.exports = {
         energy_certificate: data.energy_certificate,
         parking: data.parking,
         bargain: data.bargain,
+        user_id: req.auth.credentials.id,
+        user_username: req.auth.credentials.username,
+        user_email: req.auth.credentials.user_email,
       });
       try {
         await home.save();
