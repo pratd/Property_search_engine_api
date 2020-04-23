@@ -11,6 +11,7 @@ Mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 // create new server instance
 const server = new Hapi.Server({

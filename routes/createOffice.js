@@ -1,6 +1,8 @@
 const fs = require("fs");
 const server = require("../index.js");
 const officeSchema = require("../models/office");
+const UserSchema = require("../models/user");
+const path = require("path");
 
 module.exports = {
   method: "POST",
@@ -36,11 +38,11 @@ module.exports = {
         data.photos.forEach((photo) => {
           const phototoSave = {
             name: photo.hapi.filename,
-            path: __dirname + "/../uploads/" + photo.hapi.filename,
+            path: path.join(__dirname, "../uploads/") + photo.hapi.filename,
           };
           photosArray.push(phototoSave);
           const file = fs.createWriteStream(
-            __dirname + "/../uploads/" + photo.hapi.filename
+            path.join(__dirname, "../uploads/") + photo.hapi.filename
           );
           file.on("error", (err) => console.error(err));
           photo.pipe(file);
@@ -71,7 +73,10 @@ module.exports = {
         photos: definitiveArray,
         description: req.payload.description,
         kind: req.payload.kind,
-        location: req.payload.location,
+        street: req.payload.street,
+        city: req.payload.city,
+        postalcode: req.payload.postalcode,
+        country: req.payload.country,
         price: req.payload.price,
         lift: req.payload.lift,
         pets_allowed: req.payload.pets_allowed,
@@ -88,6 +93,19 @@ module.exports = {
       });
       try {
         await office.save();
+        let previousProperies = await UserSchema.findById(
+          req.auth.credentials.id
+        );
+
+        previousProperies = previousProperies.property_ids;
+        previousProperies.push(office.id);
+
+        await UserSchema.findByIdAndUpdate(
+          { _id: req.auth.credentials.id },
+          {
+            property_ids: previousProperies,
+          }
+        );
         return res.response("New office saved to database");
       } catch {
         return res.response("There was an error trying to create this office");
