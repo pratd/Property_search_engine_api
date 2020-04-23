@@ -1,6 +1,8 @@
 const fs = require("fs");
 const server = require("../index.js");
 const homeSchema = require("../models/home");
+const UserSchema = require("../models/user");
+const path = require("path");
 
 module.exports = {
   method: "POST",
@@ -20,7 +22,7 @@ module.exports = {
         "application/pdf",
         "application/x-www-form-urlencoded",
       ],
-      //   multipart: true,
+      multipart: true,
       maxBytes: 1024 * 1024 * 100,
       timeout: false,
     },
@@ -38,11 +40,11 @@ module.exports = {
         data.photos.forEach((photo) => {
           const phototoSave = {
             name: photo.hapi.filename,
-            path: __dirname + "/../uploads/" + photo.hapi.filename,
+            path: path.join(__dirname, "../uploads/") + photo.hapi.filename,
           };
           photosArray.push(phototoSave);
           const file = fs.createWriteStream(
-            __dirname + "/../uploads/" + photo.hapi.filename
+            path.join(__dirname, "../uploads/") + photo.hapi.filename
           );
           file.on("error", (err) => console.error(err));
           photo.pipe(file);
@@ -67,7 +69,6 @@ module.exports = {
       photosArrayToSave = photosArrayToSave.forEach((filename) => {
         definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
       });
-      console.log(req.auth.credentials, "req.auth.credentials");
 
       var home = new homeSchema({
         name: data.name,
@@ -98,6 +99,18 @@ module.exports = {
       });
       try {
         await home.save();
+        let previousProperies = await UserSchema.findById(
+          req.auth.credentials.id
+        );
+        previousProperies = previousProperies.property_ids;
+        previousProperies.push(home.id);
+
+        await UserSchema.findByIdAndUpdate(
+          { _id: req.auth.credentials.id },
+          {
+            property_ids: previousProperies,
+          }
+        );
         return res.response("New home saved to database");
       } catch {
         return res.response("There was an error trying to create this home");

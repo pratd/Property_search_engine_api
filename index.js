@@ -1,13 +1,17 @@
-require('dotenv').config();
-const Hapi = require('@hapi/hapi');
+require("dotenv").config();
+const Hapi = require("@hapi/hapi");
 const Mongoose = require("mongoose");
-const Boom = require('boom');
-const glob = require('glob');
-const path = require('path');
+const Boom = require("boom");
+const glob = require("glob");
+const path = require("path");
 const secret = process.env.SECRET;
 //const Inert = require('@hapi/inert');
-require('dotenv').config()
-Mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex:true });
+require("dotenv").config();
+Mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 // create new server instance
 const server = new Hapi.Server({
   // debug: { request: ['error'] },
@@ -41,7 +45,8 @@ const bootUpServer = async () => {
   //get default auth
   //server.auth.default('jwt');
   //get all the routes in the subdirectory of routes
-  glob.sync("routes/*.js", {
+  glob
+    .sync("routes/*.js", {
       root: __dirname,
     })
     .forEach((file) => {

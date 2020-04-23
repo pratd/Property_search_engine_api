@@ -20,7 +20,7 @@ module.exports = {
         "application/pdf",
         "application/x-www-form-urlencoded",
       ],
-      //   multipart: true,
+      multipart: true,
       maxBytes: 1024 * 1024 * 100,
       timeout: false,
     },
