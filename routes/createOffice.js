@@ -6,10 +6,10 @@ module.exports = {
   method: "POST",
   path: "/office/add",
   config: {
-    // auth: {
-    //   strategy: "jwtokenization",
-    //   scope: ["user"],
-    // },
+    auth: {
+      strategy: "jwtokenization",
+      scope: ["user"],
+    },
     payload: {
       output: "stream",
       parse: true,
@@ -82,6 +82,9 @@ module.exports = {
         energy_certificate: req.payload.energy_certificate,
         parking: req.payload.parking,
         bargain: req.payload.bargain,
+        user_id: req.auth.credentials.id,
+        user_username: req.auth.credentials.username,
+        user_email: req.auth.credentials.user_email,
       });
       try {
         await office.save();
