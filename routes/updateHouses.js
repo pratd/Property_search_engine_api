@@ -1,8 +1,7 @@
 const HouseModel = require('../models/homes');
 const updateHouseSchema = require('../schemas/verifyHouse').verifyHouseSchema;
 const Boom = require('boom');
-const fs = require('fs');
-const server = require('../index.js');
+const getPhotoArray = require('../util/getPhotos');
 module.exports ={
     method: "PUT",
     path:'/home/update/{id}',
@@ -10,41 +9,7 @@ module.exports ={
         handler: async(req, res)=>{
 
             //getting the photos first
-            const data = req.payload;
-            const photosArray = [];
-            if (data.photos) {
-                if (!Array.isArray(data.photos)) {
-                    data.photos = [data.photos];
-                }
-                data.photos.forEach((photo) => {
-                    const phototoSave = {
-                        name: photo.hapi.filename,
-                        path: __dirname + "/../uploads/" + photo.hapi.filename,
-                    };
-                    photosArray.push(phototoSave);
-                    const file = fs.createWriteStream(
-                        __dirname + "/../uploads/" + photo.hapi.filename
-                    );
-                    file.on("error", (err) => console.error(err));
-                    photo.pipe(file);
-                    photo.on("end", (err) => {
-                        const ret = [
-                            {
-                                filename: photo.hapi.filename,
-                                headers: photo.hapi.headers,
-                            },
-                        ];
-                        return JSON.stringify(ret);
-                    });
-                });
-            }
-            let photosArrayToSave = photosArray.map((photo) => {
-                return photo.name;
-            });
-            const definitiveArray = [];
-            photosArrayToSave = photosArrayToSave.forEach((filename) => {
-                definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
-            });
+            const definitiveArray = await getPhotoArray(req);
             try{
                 let result = await HouseModel.findByIdAndUpdate({"_id":req.params.id}, 
                     {$push: {"photos":{ $each: definitiveArray}}}, req.payload,{new:true});
