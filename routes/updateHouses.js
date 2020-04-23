@@ -1,19 +1,21 @@
 const HouseModel = require('../models/homes');
 const updateHouseSchema = require('../schemas/verifyHouse').verifyHouseSchema;
 const Boom = require('boom');
+const fs = require('fs');
+const server = require('../index.js');
 module.exports ={
     method: "PUT",
-    path:'/update/houses/{id}',
+    path:'/home/update/{id}',
     config:{
         handler: async(req, res)=>{
-            try{
-                //getting the photos first
-                const data = req.payload;
-                const photosArray = [];
-                if (data.photos) {
-                    if (!Array.isArray(data.photos)) {
-                        data.photos = [data.photos];
-                    }
+
+            //getting the photos first
+            const data = req.payload;
+            const photosArray = [];
+            if (data.photos) {
+                if (!Array.isArray(data.photos)) {
+                    data.photos = [data.photos];
+                }
                 data.photos.forEach((photo) => {
                     const phototoSave = {
                         name: photo.hapi.filename,
@@ -43,26 +45,25 @@ module.exports ={
             photosArrayToSave = photosArrayToSave.forEach((filename) => {
                 definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
             });
-            let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},
-                    {$push: {"photos":definitiveArray}},
-                    req.payload,{new:true});
-                    return res.response(result);
+            try{
+                let result = await HouseModel.findByIdAndUpdate({"_id":req.params.id}, 
+                    {$push: {"photos":{ $each: definitiveArray}}}, req.payload,{new:true});
+                return res.response(result);
             }catch (error){
-                console.log(req.params.id, req.payload.images);
-
+                console.log(req.params.id);
                 return Boom.badRequest('Unexpected Input!');
             }
             // console.log(req.payload);
             // return 'i have a stream';
         },
-         // Add authentication to this route
+        // Add authentication to this route
         // The user must have a scope of `admin`
-        auth: {
-            strategy: 'jwtokenization',
-            scope: ['user']
-        },
+        // auth: {
+        //     strategy: 'jwtokenization',
+        //     scope: ['user']
+        // },
         payload:{
-            output: 'stream',
+        output: 'stream',
             parse: true,
             allow: ['application/json', 'multipart/form-data', 'image/jpeg', 'application/pdf', 'application/x-www-form-urlencoded'],
             multipart: true,
