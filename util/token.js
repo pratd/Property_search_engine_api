@@ -14,7 +14,12 @@ function createToken(user) {
   }
   //sign the token
   return jwt.sign(
-    { id: user._id, username: user.username, scope: scopes },
+    {
+      id: user._id,
+      username: user.username,
+      scope: scopes,
+      user_email: user.email,
+    },
     secret,
     { algorithm: "HS256", expiresIn: 86400 }
   );

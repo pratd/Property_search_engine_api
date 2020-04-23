@@ -29,10 +29,10 @@ module.exports ={
         },
         // Add authentication to this route
         // The user must have a scope of `admin`
-        // auth: {
-        //     strategy: 'jwtokenization',
-        //     scope: ['user']
-        // },
+        auth: {
+            strategy: 'jwtokenization',
+            scope: ['user']
+        },
         payload:{
         output: 'stream',
             parse: true,
