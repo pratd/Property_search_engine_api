@@ -232,7 +232,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"cacatua@cacatua.com\",\n\t\"username\": \"cacatua\",\n\t\"password\": \"prattyaman\"\n}",
+					"raw": "{\n\t\"email\": \"cristina@bestdeveloper.world\",\n\t\"username\": \"crisbestdev\",\n\t\"password\": \"cristhebest\",\n\t\"role\": \"user\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -275,6 +275,325 @@
 					"path": [
 						"login",
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE Home",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTFkNDc4NjU2NTY5NGI1MDBlOGY3NyIsInVzZXJuYW1lIjoiY2FjYXR1YSIsInNjb3BlIjoidXNlciIsInVzZXJfZW1haWwiOiJjYWNhdHVhQGNhY2F0dWEuY29tIiwiaWF0IjoxNTg3NjYzOTk0LCJleHAiOjE1ODc3NTAzOTR9.717p5AbLDJh9qEkHmqC5DFste7vCbZ-M-81rtm0MomE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "typ",
+						"value": "JWT",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "alg",
+						"value": "HS256",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjVlOWYwZGE4M2Y2ZTliMTIxYzdkM2ZiOSIsInVzZXJuYW1lIjoiY2FjYXR1YSIsInNjb3BlIjoidXNlciIsImlhdCI6MTU4NzU1NjQ2MywiZXhwIjoxNTg3NjQyODYzfQ.2unpJyf9Lh4Y0ipIkokr5Lrcwr2hypI3aJZ2m5xhIc0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "bargain",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "photos",
+							"type": "file",
+							"src": [
+								"/Users/cristinamoreno/Documents/0.DEV/0.ASSEMBLER/PROJECTS/property_search_engine/Node API/PREASSETS/orlova-maria-79ArznqfWBQ-unsplash.jpg",
+								"/Users/cristinamoreno/Documents/0.DEV/0.ASSEMBLER/PROJECTS/property_search_engine/Node API/PREASSETS/toa-heftiba-9vNFtkm-Pus-unsplash.jpg",
+								"/Users/cristinamoreno/Documents/0.DEV/0.ASSEMBLER/PROJECTS/property_search_engine/Node API/PREASSETS/toa-heftiba-oKbQxVusp8M-unsplash.jpg"
+							]
+						},
+						{
+							"key": "name",
+							"value": "Nice appartment in center Barcelona",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Nice and cozy appartment in Barcelona Ramblas. Enjoy a very nice neighbourhood and also handy transportation options.",
+							"type": "text"
+						},
+						{
+							"key": "kind",
+							"value": "Appartament",
+							"type": "text"
+						},
+						{
+							"key": "bedrooms",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "bathrooms",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "kitchen",
+							"value": "Fully fitted",
+							"type": "text"
+						},
+						{
+							"key": "condition",
+							"value": "New",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "lift",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "pets_allowed",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "garden",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "swimming_pool",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "air_conditioning",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "heating",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "floor",
+							"value": "3rd Floor",
+							"type": "text"
+						},
+						{
+							"key": "orientation",
+							"value": "N",
+							"type": "text"
+						},
+						{
+							"key": "energy_certificate",
+							"value": "A",
+							"type": "text"
+						},
+						{
+							"key": "parking",
+							"value": "A parking spot increments by 100€/month",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "Castellar del Vallès",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Sabadell",
+							"type": "text"
+						},
+						{
+							"key": "postalcode",
+							"value": "08208",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "España",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/home/add",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"home",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE Office",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTFkYWU2OWMzZWYzMDAxNzkwNWMzNiIsInVzZXJuYW1lIjoiY3Jpc2Jlc3RkZXYiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoiY3Jpc3RpbmFAYmVzdGRldmVsb3Blci53b3JsZCIsImlhdCI6MTU4NzY2NTY1NCwiZXhwIjoxNTg3NzUyMDU0fQ.Y4iF8mrdQ-vqT6NOCZXSRbWfBb0qZ74anXc26zh_3L4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Astonishing office in middle barcelona",
+							"type": "text"
+						},
+						{
+							"key": "photos",
+							"type": "file",
+							"src": [
+								"/Users/cristinamoreno/Pictures/IMAGE/1438c4f7c91fdd5a-photo.JPG",
+								"/Users/cristinamoreno/Pictures/IMAGE/IMG_8260.JPG"
+							]
+						},
+						{
+							"key": "description",
+							"value": "Nice workplace in middle Barcelona with good transport connection",
+							"type": "text"
+						},
+						{
+							"key": "kind",
+							"value": "Private",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "lift",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "pets_allowed",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "air_conditioning",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "heating",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "floor",
+							"value": "3rd floor",
+							"type": "text"
+						},
+						{
+							"key": "terrace",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "energy_certificate",
+							"value": "G",
+							"type": "text"
+						},
+						{
+							"key": "parking",
+							"value": "A parking spot increments by 100€/month",
+							"type": "text"
+						},
+						{
+							"key": "bargain",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "Castellar del Vallès",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Sabadell",
+							"type": "text"
+						},
+						{
+							"key": "postalcode",
+							"value": "08208",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "España",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/office/add",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"office",
+						"add"
 					]
 				}
 			},
