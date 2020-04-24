@@ -5,7 +5,7 @@ const getPhotoArray = require('../util/getPhotos').getPhotos;
 const deletePhotoArray = require('../util/getPhotos').deletePhotos;
 module.exports ={
     method: "PUT",
-    path:'/home/update/{id}',
+    path:'/office/update/{id}',
     config:{
         handler: async(req, res)=>{
 

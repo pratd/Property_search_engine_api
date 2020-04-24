@@ -1,0 +1,28 @@
+const OfficeModel = require('../models/office');
+const UserModel = require('../models/user');
+const Boom = require('boom');
+
+module.exports={
+    method: "DELETE",
+    path:"/office/delete/{id}",
+    config: {
+        handler: async (req, res)=>{
+            try{
+                let result = await OfficeModel.findByIdAndUpdate(req.params.id);
+                // TODO: delete property ids from users
+                await UserModel.findByIdAndUpdate({_id:result._id},{$pull:{property_ids:req.params.id}}, {new : true});
+                return res.response(result);
+            }catch(err){
+                return Boom.badRequest('Unexpected Input!');
+            }
+        },
+        auth: {
+            strategy: 'jwtokenization',
+            scope: ['user','admin']
+        },
+        payload:{
+            allow: ['application/json', 'multipart/form-data', 'image/jpeg', 'application/pdf', 'application/x-www-form-urlencoded'],
+            multipart: true,
+        }
+    }
+};

@@ -1,4 +1,4 @@
-const HouseModel = require('../models/homes');
+const HouseModel = require('../models/home');
 const updateHouseSchema = require('../schemas/verifyHouse').updateHouseSchema;
 const Boom = require('boom');
 const getPhotoArray = require('../util/getPhotos').getPhotos;
