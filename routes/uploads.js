@@ -1,6 +1,7 @@
 const fs = require("fs");
 const server = require("../index.js");
 const path = require("path");
+const util = require("util");
 
 module.exports = {
   method: "GET",
@@ -8,11 +9,17 @@ module.exports = {
   config: {
     //!This handler needs refactor
     handler: async (req, res) => {
-      if (!fs.existsSync(__dirname + "/../uploads/")) {
-        const uploads = fs.readdir(__dirname + "/../uploads/");
-        return res.response(uploads);
-      } else {
-        return res.response("Uploads dir doesn't exist yet");
+      const readdir = util.promisify(fs.readdir);
+
+      try {
+        if (fs.existsSync(__dirname + "/../uploads/")) {
+          const uploads = await readdir(__dirname + "/../uploads/");
+          return res.response(uploads);
+        } else {
+          return res.response("Uploads dir doesn't exist yet");
+        }
+      } catch (err) {
+        console.log(err);
       }
     },
   },
