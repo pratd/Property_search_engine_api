@@ -15,7 +15,12 @@ module.exports = {
     handler: async (req, res) => {
       //if the password is correct we issue a token
       // if incorrect, the error will bubble up from the pre method
-      return res.response({ id_token: createToken(req.pre.user) }).code(201);
+      return res
+        .response({
+          id_token: createToken(req.pre.user),
+          user_info: req.pre.user,
+        })
+        .code(201);
     },
     payload: {
       allow: [

@@ -19,6 +19,9 @@ const server = new Hapi.Server({
   host: process.env.HOST,
   port: process.env.PORT || 3000,
   routes: {
+    files: {
+      relativeTo: path.join(__dirname, "/uploads"),
+    },
     cors: {
       origin: ["*"],
       headers: ["Accept", "Content-Type"],
@@ -26,6 +29,7 @@ const server = new Hapi.Server({
     },
   },
 });
+
 //validation function for the token
 const validateFunc = async (decoded, request) => {
   if (decoded) {
@@ -36,6 +40,7 @@ const validateFunc = async (decoded, request) => {
 
 //SERVER BOOTUP
 const bootUpServer = async () => {
+  await server.register(require("@hapi/inert"));
   await server.register([require("hapi-auth-jwt2")]);
 
   server.auth.strategy("jwtokenization", "jwt", {
