@@ -11,6 +11,7 @@ module.exports={
                 let result = await HomeModel.findByIdAndUpdate(req.params.id);
                 // TODO: delete property ids from users
                 await UserModel.findByIdAndUpdate({_id:result._id},{$pull:{property_ids:req.params.id}}, {new : true});
+                //TODO: delete the image file from deletePhotos
                 return res.response(result);
             }catch(error){
                 return Boom.badRequest('Unexpected Input!');

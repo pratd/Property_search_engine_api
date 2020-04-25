@@ -8,6 +8,9 @@ async function getPhotos(req) {
       data.photos = [data.photos];
     }
     data.photos.forEach((photo) => {
+      if(req.params.id){
+        
+      }
       const phototoSave = {
         name: photo.hapi.filename,
         path: __dirname + "/../uploads/" + photo.hapi.filename,
@@ -58,6 +61,9 @@ async function deletePhotos(req) {
       const file = fs.createWriteStream(
         __dirname + "/../deletePhotos/" + photo.hapi.filename
       );
+      if (!fs.existsSync(__dirname + "/../deletePhotos/")) {
+        fs.mkdirSync(__dirname + "/../deletePhotos/");
+      }
       file.on("error", (err) => console.error(err));
       photo.pipe(file);
       photo.on("end", (err) => {
