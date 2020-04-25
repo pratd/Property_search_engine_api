@@ -5,6 +5,8 @@ const UserSchema = require("../models/user");
 const path = require("path");
 const getPhotoArray = require("../util/getPhotos").getPhotos;
 
+const util = require("util");
+
 module.exports = {
   method: "POST",
   path: "/home/add",
@@ -32,9 +34,14 @@ module.exports = {
     handler: async (req, res) => {
       const data = req.payload;
       const definitiveArray = await getPhotoArray(req);
+
+      const readFile = util.promisify(fs.readFile);
+
+      // definitiveArray.forEach
+      const read = await readFile(definitiveArray[0].path);
       var home = new homeSchema({
         name: data.name,
-        photos: definitiveArray,
+        photos: { data: read, contentType: "image/png" },
         description: data.description,
         kind: data.kind,
         // location: data.location,

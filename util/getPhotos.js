@@ -3,6 +3,7 @@ const server = require("../index.js");
 async function getPhotos(req) {
   const data = req.payload;
   const photosArray = [];
+  const wholePhotos = [];
   if (data.photos) {
     if (!Array.isArray(data.photos)) {
       data.photos = [data.photos];
@@ -22,6 +23,7 @@ async function getPhotos(req) {
       const file = fs.createWriteStream(
         __dirname + "/../uploads/" + photo.hapi.filename
       );
+      wholePhotos.push(file);
       file.on("error", (err) => console.error(err));
       photo.pipe(file);
       photo.on("end", (err) => {
@@ -35,15 +37,17 @@ async function getPhotos(req) {
       });
     });
   }
-  let photosArrayToSave = photosArray.map((photo) => {
-    return photo.name;
-  });
-  //photos to delete
-  const definitiveArray = [];
-  photosArrayToSave = photosArrayToSave.forEach((filename) => {
-    definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
-  });
-  return definitiveArray;
+  return wholePhotos;
+
+  // let photosArrayToSave = photosArray.map((photo) => {
+  //   return photo.name;
+  // });
+  // //photos to delete
+  // const definitiveArray = [];
+  // photosArrayToSave = photosArrayToSave.forEach((filename) => {
+  //   definitiveArray.push(`${server.info.uri}/uploads/${filename}`);
+  // });
+  // return definitiveArray;
 }
 async function deletePhotos(req) {
   const data = req.payload;
