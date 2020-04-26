@@ -37,7 +37,6 @@ module.exports = {
 
       const readFile = util.promisify(fs.readFile);
 
-      // definitiveArray.forEach
       const read = await readFile(definitiveArray[0].path);
       var home = new homeSchema({
         name: data.name,
@@ -74,13 +73,13 @@ module.exports = {
         let previousProperies = await UserSchema.findById(
           req.auth.credentials.id
         );
-        previousProperies = previousProperies.property_ids;
+        previousProperies = previousProperies.homes_ids;
         previousProperies.push(home.id);
 
         await UserSchema.findByIdAndUpdate(
           { _id: req.auth.credentials.id },
           {
-            property_ids: previousProperies,
+            homes_ids: previousProperies,
           }
         );
         return res.response("New home saved to database");

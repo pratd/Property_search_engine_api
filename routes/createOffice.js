@@ -58,13 +58,13 @@ module.exports = {
           req.auth.credentials.id
         );
 
-        previousProperties = previousProperties.property_ids;
+        previousProperties = previousProperties.offices_ids;
         previousProperties.push(office.id);
 
         await UserSchema.findByIdAndUpdate(
           { _id: req.auth.credentials.id },
           {
-            property_ids: previousProperties,
+            offices_ids: previousProperties,
           }
         );
         return res.response("New office saved to database");

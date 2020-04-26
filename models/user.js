@@ -7,13 +7,9 @@ const userSchema = new Schema(
     username: { type: String, required: true, index: { unique: true } },
     password: { type: String, required: true },
     email: { type: String, required: true, index: { unique: true } },
-    property_ids: [{ type: mongoose.Schema.Types.ObjectId }],
-    // homes_ids: [
-    // 	{ type: mongoose.Schema.Types.ObjectId, ref: 'homes' }
-    // ],
-    // offices_ids: [
-    // 	{ type: mongoose.Schema.Types.ObjectId, ref: 'offices' }
-    // ],
+    // property_ids: [{ type: mongoose.Schema.Types.ObjectId }],
+    homes_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: "homes" }],
+    offices_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: "offices" }],
     role: { type: String, default: "user" },
   },
   {
