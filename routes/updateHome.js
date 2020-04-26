@@ -37,7 +37,7 @@ module.exports ={
                 try{
                     //*update photos first
                     const house = await HouseModel.findByIdAndUpdate({_id:req.params.id},
-                        {$push: {photos:{photo: photoArrayAdd, contentType: req.payload.photos.mimeType}}},{new:true});
+                        {$push: {photos:{$cond:{if:{$gte:['photo', ]}}} {photo: photoArrayAdd, contentType: req.payload.photos.mimeType}}},{new:true});
                     console.log(house);
                     if (req.payload.photos){
                         req.payload.photos=undefined;

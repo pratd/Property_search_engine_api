@@ -265,7 +265,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"cacatua@cacatua.com\",\n\t\"password\": \"prattyaman\"\n}"
+					"raw": "{\n\t\"email\": \"cristina@bestdeveloper.world\",\n\t\"password\": \"cristhebest\"\n}"
 				},
 				"url": {
 					"raw": "{{URL}}/login/users",
@@ -288,7 +288,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTFkNDc4NjU2NTY5NGI1MDBlOGY3NyIsInVzZXJuYW1lIjoiY2FjYXR1YSIsInNjb3BlIjoidXNlciIsInVzZXJfZW1haWwiOiJjYWNhdHVhQGNhY2F0dWEuY29tIiwiaWF0IjoxNTg3NjYzOTk0LCJleHAiOjE1ODc3NTAzOTR9.717p5AbLDJh9qEkHmqC5DFste7vCbZ-M-81rtm0MomE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTJlNmVmZTRmYzhlNGNiZGRhMTM1MCIsInVzZXJuYW1lIjoiY3Jpc2Jlc3RkZXYiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoiY3Jpc3RpbmFAYmVzdGRldmVsb3Blci53b3JsZCIsImlhdCI6MTU4NzczNDUyNywiZXhwIjoxNTg3ODIwOTI3fQ.G_xWepeKxfiKe22mowftS4sWtZbb21Klx97YAeihZ4o",
 							"type": "string"
 						}
 					]
@@ -474,7 +474,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTFkYWU2OWMzZWYzMDAxNzkwNWMzNiIsInVzZXJuYW1lIjoiY3Jpc2Jlc3RkZXYiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoiY3Jpc3RpbmFAYmVzdGRldmVsb3Blci53b3JsZCIsImlhdCI6MTU4NzY2NTY1NCwiZXhwIjoxNTg3NzUyMDU0fQ.Y4iF8mrdQ-vqT6NOCZXSRbWfBb0qZ74anXc26zh_3L4",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTU2NjhiODQzNTNmMmQ2MjQzZjI5YSIsInVzZXJuYW1lIjoiY3Jpc2Jlc3RkZXYiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoiY3Jpc3RpbmFAYmVzdGRldmVsb3Blci53b3JsZCIsImlhdCI6MTU4Nzg5ODAyNywiZXhwIjoxNTg3OTg0NDI3fQ.PFrC0hYormuIScgR3L9GzLlpNvLN_g69KreyuKWtT3Q",
 							"type": "string"
 						}
 					]
@@ -594,6 +594,64 @@
 					"path": [
 						"office",
 						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SEND Request to seller",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Cristina Moreno Medran",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "moreno.medran@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "Hello! I love your property. Can we meet to see it? Thanks in advance!",
+							"type": "text"
+						},
+						{
+							"key": "property_id",
+							"value": "5ea478207dc26a2f28742c26",
+							"type": "text"
+						},
+						{
+							"key": "seller_id",
+							"value": "5ea4718796e8d22918b45629",
+							"type": "text"
+						},
+						{
+							"key": "seller_email",
+							"value": "ryan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "seller_name",
+							"value": "ryan1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/request/send",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"request",
+						"send"
 					]
 				}
 			},
