@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const homeSchema = new Schema(
   {
     name: String,
-    photos: [{photo: { data: Buffer, contentType: String},  default: []}],
+    photos: [{photo: { data: Buffer, contentType: String}}],
     description: String,
     kind: String,
     street: String,

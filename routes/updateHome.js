@@ -34,18 +34,37 @@ module.exports ={
                     photoArrayRemove.push(read);
                 }
                 //* Updating the houseModel
+                var arrayPhoto = [{photo:{data:[], contentType:null}}];
+                var arrayDelete = [{photo:{data:[], contentType:null}}];
+                photoArrayAdd.forEach(img => {
+                    arrayPhoto.push({
+                        photo:{
+                            data: img,
+                            contentType:"img/jpg"
+                        }
+                    });
+                });
+                photoArrayRemove.forEach(img => {
+                    arrayDelete.push({
+                        photo:{
+                            data: img,
+                            contentType:"img/jpg"
+                        }
+                    });
+                });
                 try{
                     //*update photos first
-                    const house = await HouseModel.findByIdAndUpdate({_id:req.params.id},
-                        {$push: {photos:{$cond:{if:{$gte:['photo', ]}}} {photo: photoArrayAdd, contentType: req.payload.photos.mimeType}}},{new:true});
-                    console.log(house);
+                    //if the field dont exist 
+                    console.log(arrayPhoto);
+                    await HouseModel.findByIdAndUpdate({_id:req.params.id},
+                        {$push: {photos: arrayPhoto}} ,{new:true});
                     if (req.payload.photos){
                         req.payload.photos=undefined;
                     }
                     //*final update after pushing the photos
                     await HouseModel.findByIdAndUpdate(req.params.id,req.payload,{new:true,omitUndefined:true});
                     //* delete what is not required
-                    let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},{photos:{$pullAll: {photo: photoArrayRemove}}}, {new : true});
+                    let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},{$pullAll: {photos: photoArrayRemove}}, {new : true});
                     return res.response(result);
                 }catch (error){
                     return Boom.badRequest('Unexpected Input!');

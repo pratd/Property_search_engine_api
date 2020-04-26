@@ -75,7 +75,7 @@ module.exports = {
           }
         });
         return res.response("Saved to DB and email sent!");
-      } catch {
+      } catch(err) {
         return res.response(
           "There was an error, saving to DB or sending the email"
         );
