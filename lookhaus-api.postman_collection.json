@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ec29b624-604f-494e-a3b3-1aa796d9f0e9",
+		"_postman_id": "dc84637e-2431-4013-9497-4f18978e7b83",
 		"name": "lookhaus-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -265,7 +265,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"cristina@bestdeveloper.world\",\n\t\"password\": \"cristhebest\"\n}"
+					"raw": "{\n\t\"email\": \"cacatua@cacatua.com\",\n\t\"password\": \"prattyaman\"\n}"
 				},
 				"url": {
 					"raw": "{{URL}}/login/users",
@@ -288,7 +288,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTJlNmVmZTRmYzhlNGNiZGRhMTM1MCIsInVzZXJuYW1lIjoiY3Jpc2Jlc3RkZXYiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoiY3Jpc3RpbmFAYmVzdGRldmVsb3Blci53b3JsZCIsImlhdCI6MTU4NzczNDUyNywiZXhwIjoxNTg3ODIwOTI3fQ.G_xWepeKxfiKe22mowftS4sWtZbb21Klx97YAeihZ4o",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTFkNDc4NjU2NTY5NGI1MDBlOGY3NyIsInVzZXJuYW1lIjoiY2FjYXR1YSIsInNjb3BlIjoidXNlciIsInVzZXJfZW1haWwiOiJjYWNhdHVhQGNhY2F0dWEuY29tIiwiaWF0IjoxNTg3NjYzOTk0LCJleHAiOjE1ODc3NTAzOTR9.717p5AbLDJh9qEkHmqC5DFste7vCbZ-M-81rtm0MomE",
 							"type": "string"
 						}
 					]
@@ -474,7 +474,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTU2NjhiODQzNTNmMmQ2MjQzZjI5YSIsInVzZXJuYW1lIjoiY3Jpc2Jlc3RkZXYiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoiY3Jpc3RpbmFAYmVzdGRldmVsb3Blci53b3JsZCIsImlhdCI6MTU4Nzg5ODAyNywiZXhwIjoxNTg3OTg0NDI3fQ.PFrC0hYormuIScgR3L9GzLlpNvLN_g69KreyuKWtT3Q",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTFkYWU2OWMzZWYzMDAxNzkwNWMzNiIsInVzZXJuYW1lIjoiY3Jpc2Jlc3RkZXYiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoiY3Jpc3RpbmFAYmVzdGRldmVsb3Blci53b3JsZCIsImlhdCI6MTU4NzY2NTY1NCwiZXhwIjoxNTg3NzUyMDU0fQ.Y4iF8mrdQ-vqT6NOCZXSRbWfBb0qZ74anXc26zh_3L4",
 							"type": "string"
 						}
 					]
@@ -600,58 +600,112 @@
 			"response": []
 		},
 		{
-			"name": "SEND Request to seller",
+			"name": "localhost:3000/office/update/5ea566d384353f2d6243f29c",
 			"request": {
-				"method": "POST",
-				"header": [],
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTU2OTk3ODdiNjJkM2ZhMGRlMjcyYyIsInVzZXJuYW1lIjoicnlhbjEyMzQiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoicnlhbkBnbWFpbC5jb20iLCJpYXQiOjE1ODc5MjQ2MzMsImV4cCI6MTU4ODAxMTAzM30.mTYb0fHb15JTrFJm3DvMKEu35Z8JE7R8bBoc0wa_46M",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "name",
-							"value": "Cristina Moreno Medran",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "moreno.medran@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "message",
-							"value": "Hello! I love your property. Can we meet to see it? Thanks in advance!",
-							"type": "text"
-						},
-						{
-							"key": "property_id",
-							"value": "5ea478207dc26a2f28742c26",
-							"type": "text"
-						},
-						{
-							"key": "seller_id",
-							"value": "5ea4718796e8d22918b45629",
-							"type": "text"
-						},
-						{
-							"key": "seller_email",
-							"value": "ryan@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "seller_name",
-							"value": "ryan1234",
-							"type": "text"
+							"key": "photos",
+							"type": "file",
+							"src": "/C:/Users/pratt/OneDrive/Desktop/f3b60e2108bc764e45570f590eaf3cdc.jpg"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{URL}}/request/send",
+					"raw": "localhost:3000/office/update/5ea566d384353f2d6243f29c",
 					"host": [
-						"{{URL}}"
+						"localhost"
 					],
+					"port": "3000",
 					"path": [
-						"request",
-						"send"
+						"office",
+						"update",
+						"5ea566d384353f2d6243f29c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/home/update/5ea589cf5c9a894efc6735e1",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTU2OTk3ODdiNjJkM2ZhMGRlMjcyYyIsInVzZXJuYW1lIjoicnlhbjEyMzQiLCJzY29wZSI6InVzZXIiLCJ1c2VyX2VtYWlsIjoicnlhbkBnbWFpbC5jb20iLCJpYXQiOjE1ODc5MjQ2MzMsImV4cCI6MTU4ODAxMTAzM30.mTYb0fHb15JTrFJm3DvMKEu35Z8JE7R8bBoc0wa_46M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photos",
+							"type": "file",
+							"src": "/C:/Users/pratt/OneDrive/Desktop/Kimi_Raikkonen_2006_test.jpg"
+						},
+						{
+							"key": "bathrooms",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "deletePhotos",
+							"type": "file",
+							"src": "/C:/Users/pratt/OneDrive/Desktop/f3b60e2108bc764e45570f590eaf3cdc.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/home/update/5ea589cf5c9a894efc6735e1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home",
+						"update",
+						"5ea589cf5c9a894efc6735e1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "5ea03bb5c9b97f498088af60",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/home/delete/5ea16c00999d753c5c0c5bd4",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/home/delete/5ea16c00999d753c5c0c5bd4",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home",
+						"delete",
+						"5ea16c00999d753c5c0c5bd4"
 					]
 				}
 			},
