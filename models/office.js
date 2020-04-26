@@ -4,10 +4,9 @@ const Schema = mongoose.Schema;
 const officeSchema = new Schema(
   {
     name: String,
-    photos: Array,
+    photos:[{photo: { data: Buffer, contentType: String },  default: []}],
     description: String,
     kind: String,
-    // location: Array,
     street: String,
     city: String,
     postalcode: String,
@@ -21,7 +20,7 @@ const officeSchema = new Schema(
     terrace: Boolean,
     energy_certificate: String,
     parking: String,
-    bargain: Boolean,
+    bargain:  { type: Boolean, default: 0 },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     user_username: String,
     user_email: String,

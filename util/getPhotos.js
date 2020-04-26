@@ -52,6 +52,7 @@ async function getPhotos(req) {
 async function deletePhotos(req) {
   const data = req.payload;
   const photosArray = [];
+  const allPhotos = [];
   if (data.deletePhotos) {
     if (!Array.isArray(data.deletePhotos)) {
       data.deletePhotos = [data.deletePhotos];
@@ -69,6 +70,7 @@ async function deletePhotos(req) {
         fs.mkdirSync(__dirname + "/../deletePhotos/");
       }
       file.on("error", (err) => console.error(err));
+      allPhotos.push(file);
       photo.pipe(file);
       photo.on("end", (err) => {
         const ret = [
@@ -81,15 +83,16 @@ async function deletePhotos(req) {
       });
     });
   }
-  let photosArrayToDelete = photosArray.map((photo) => {
-    return photo.name;
-  });
-  //photos to delete
-  const definitiveDeleteArray = [];
-  photosArrayToDelete = photosArrayToDelete.forEach((filename) => {
-    definitiveDeleteArray.push(`${server.info.uri}/uploads/${filename}`);
-  });
-  return definitiveDeleteArray;
+  return allPhotos;
+  // let photosArrayToDelete = photosArray.map((photo) => {
+  //   return photo.name;
+  // });
+  // //photos to delete
+  // const definitiveDeleteArray = [];
+  // photosArrayToDelete = photosArrayToDelete.forEach((filename) => {
+  //   definitiveDeleteArray.push(`${server.info.uri}/uploads/${filename}`);
+  // });
+  // return definitiveDeleteArray;
 }
 module.exports = {
   getPhotos: getPhotos,

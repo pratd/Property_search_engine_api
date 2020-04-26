@@ -3,28 +3,53 @@ const updateHouseSchema = require('../schemas/verifyHouse').updateHouseSchema;
 const Boom = require('boom');
 const getPhotoArray = require('../util/getPhotos').getPhotos;
 const deletePhotoArray = require('../util/getPhotos').deletePhotos;
+const fs = require('fs');
+const util = require("util");
 module.exports ={
     method: "PUT",
     path:'/home/update/{id}',
     config:{
         handler: async(req, res)=>{
 
-            //getting the photos first to push
-            const arraytoPush = await getPhotoArray(req);
-            const arraytoDelete = await deletePhotoArray(req);
-            try{
-                //*update photos first
-                await HouseModel.findByIdAndUpdate({_id:req.params.id},{ $push: {photos: {$each: arraytoPush }}},{new:true});
-                if (req.payload.photos){
-                    req.payload.photos=undefined;
+            //TODO: getting the photos first to push
+            let arraytoPush = await Promise.resolve(getPhotoArray(req));
+            let arraytoDelete = await Promise.resolve(deletePhotoArray(req));
+
+            const readFile = util.promisify(fs.readFile);
+            if(arraytoPush && arraytoDelete){
+                if (!Array.isArray(arraytoPush)) {
+                    arraytoPush = [arraytoPush];
                 }
-                //*final update
-                await HouseModel.findByIdAndUpdate(req.params.id,req.payload,{new:true,omitUndefined:true});
-                //* delete what is not required
-                let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},{$pullAll:{photos: arraytoDelete}}, {new : true});
-                return res.response(result);
-            }catch (error){
-                return Boom.badRequest('Unexpected Input!');
+                if (!Array.isArray(arraytoDelete)) {
+                    arraytoDelete = [arraytoDelete];
+                }
+                const photoArrayAdd =[];
+                for (const photo of arraytoPush) {
+                    const read = await readFile(photo.path);
+                    photoArrayAdd.push(read);
+                }
+                const photoArrayRemove =[];
+                for (const photo of arraytoDelete) {
+                    const read = await readFile(photo.path);
+                    photoArrayRemove.push(read);
+                }
+                //* Updating the houseModel
+                try{
+                    //*update photos first
+                    const house = await HouseModel.findByIdAndUpdate({_id:req.params.id},
+                        {$push: {photos:{photo: photoArrayAdd, contentType: req.payload.photos.mimeType}}},{new:true});
+                    console.log(house);
+                    if (req.payload.photos){
+                        req.payload.photos=undefined;
+                    }
+                    //*final update after pushing the photos
+                    await HouseModel.findByIdAndUpdate(req.params.id,req.payload,{new:true,omitUndefined:true});
+                    //* delete what is not required
+                    let result = await HouseModel.findByIdAndUpdate({_id:req.params.id},{photos:{$pullAll: {photo: photoArrayRemove}}}, {new : true});
+                    return res.response(result);
+                }catch (error){
+                    return Boom.badRequest('Unexpected Input!');
+                }
             }
         },
         // Add authentication to this route

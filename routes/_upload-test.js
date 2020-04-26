@@ -6,7 +6,7 @@ require("dotenv").config();
 const util = require("util");
 
 const fs = require("fs");
-const AWS = require("aws-sdk");
+//const AWS = require("aws-sdk");
 
 module.exports = {
   method: "POST",

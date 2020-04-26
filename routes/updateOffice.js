@@ -3,7 +3,7 @@ const updateOfficeSchema = require('../schemas/verifyOffice').updateOfficeSchema
 const Boom = require('boom');
 const getPhotoArray = require('../util/getPhotos').getPhotos;
 const deletePhotoArray = require('../util/getPhotos').deletePhotos;
-module.exports ={
+module.exports ={ 
     method: "PUT",
     path:'/office/update/{id}',
     config:{
@@ -14,11 +14,12 @@ module.exports ={
             const arraytoDelete = await deletePhotoArray(req);
             try{
                 //*update photos first
-                await OfficeModel.findByIdAndUpdate({_id:req.params.id},{ $push: {photos: {$each: arraytoPush }}},{new:true});
+                await OfficeModel.findByIdAndUpdate({_id:req.params.id},{ $push: {photos: {photo: {$each: arraytoPush }, 
+                    contentType: req.payload.photos.mimeType}}},{new:true});
                 if (req.payload.photos){
                     req.payload.photos=undefined;
                 }
-                //*final update
+                //*final update of the rest of values
                 await OfficeModel.findByIdAndUpdate(req.params.id,req.payload,{new:true,omitUndefined:true});
                 //* delete what is not required
                 let result = await OfficeModel.findByIdAndUpdate({_id:req.params.id},{$pullAll:{photos: arraytoDelete}}, {new : true});
