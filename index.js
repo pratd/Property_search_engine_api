@@ -25,7 +25,12 @@ const server = new Hapi.Server({
     cors: {
       origin: ["*"],
       headers: ["Accept", "Content-Type"],
-      additionalHeaders: ["X-Requested-With"],
+      additionalHeaders: [
+        "X-Requested-With",
+        "application/x-www-form-urlencoded",
+        "multipart/form-data",
+        "text/plain",
+      ],
     },
   },
 });
