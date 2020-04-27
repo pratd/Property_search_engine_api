@@ -24,10 +24,10 @@ const server = new Hapi.Server({
     },
     cors: {
       origin: ["*"],
-      allowCredentials: true,
+      // allowCredentials: true,
       headers: ["Accept", "Content-Type", "Access-Control-Allow-Origin"],
-      exposeHeaders: ['content-type', 'content-length'],
-      methods:['POST, GET, OPTIONS', 'PUT', 'DELETE'],
+      exposeHeaders: ["content-type", "content-length"],
+      methods: ["POST, GET, OPTIONS", "PUT", "DELETE"],
       additionalHeaders: [
         "X-Requested-With",
         "application/x-www-form-urlencoded",
