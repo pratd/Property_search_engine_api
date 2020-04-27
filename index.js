@@ -27,7 +27,7 @@ const server = new Hapi.Server({
       // allowCredentials: true,
       headers: ["Accept", "Content-Type", "Access-Control-Allow-Origin"],
       exposeHeaders: ["content-type", "content-length"],
-      methods: ["POST, GET, OPTIONS", "PUT", "DELETE"],
+      methods: ["POST, GET, OPTIONS"],
       additionalHeaders: [
         "X-Requested-With",
         "application/x-www-form-urlencoded",
